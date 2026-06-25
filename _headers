@@ -1,0 +1,23 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: SAMEORIGIN
+
+/assets/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/*
+  Cache-Control: public, max-age=604800
+
+/files/*
+  Cache-Control: no-cache
+
+/assets/content-config.js
+  Cache-Control: no-cache
+
+/script.js
+  Cache-Control: no-cache
+
+/styles.css
+  Cache-Control: no-cache
