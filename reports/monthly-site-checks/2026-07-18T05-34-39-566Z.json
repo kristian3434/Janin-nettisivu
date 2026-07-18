@@ -1,0 +1,1051 @@
+{
+  "startedAt": "2026-07-18T05:34:39.566Z",
+  "siteBaseUrl": "https://tulevaisuudentekija.janmyllymaki.workers.dev",
+  "totals": {
+    "links": 24,
+    "buttons": 31,
+    "files": 32,
+    "httpRequests": 23,
+    "passed": 112,
+    "failed": 0,
+    "warnings": 2,
+    "skipped": 1
+  },
+  "results": [
+    {
+      "status": "pass",
+      "area": "legacy-url",
+      "type": "old-wix-reference",
+      "label": "Vanhat Wix-polut",
+      "target": "source files",
+      "detail": "Vanhoja wix.com, wixsite.com tai wixstatic.com -polkuja ei löytynyt.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "language_fi (index.html:165)",
+      "target": "language:fi",
+      "detail": "Kielinapilla on tunnettu data-language-toiminto.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "language_en (index.html:166)",
+      "target": "language:en",
+      "detail": "Kielinapilla on tunnettu data-language-toiminto.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "portfolio_role_creative_design (index.html:210)",
+      "target": "portfolio-role:creative-design",
+      "detail": "Roolivalitsimella on tuettu data-role-button-arvo.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "portfolio_role_digital_marketing (index.html:223)",
+      "target": "portfolio-role:digital-marketing",
+      "detail": "Roolivalitsimella on tuettu data-role-button-arvo.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "portfolio_role_ai_solutions (index.html:236)",
+      "target": "portfolio-role:ai-solutions",
+      "detail": "Roolivalitsimella on tuettu data-role-button-arvo.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "portfolio_role_all (index.html:250)",
+      "target": "portfolio-role:all",
+      "detail": "Roolivalitsimella on tuettu data-role-button-arvo.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "Sulje videosoitin (index.html:561)",
+      "target": "video-cv-player",
+      "detail": "Sulkunapilla on tunnettu video-close-toiminto.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "video_cv_load_button (index.html:580)",
+      "target": "video-cv-youtube",
+      "detail": "Videon latausnapilla on tunnettu data-video-load-toiminto ja YouTube ID.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "video_cv_play_button (index.html:591)",
+      "target": "video-cv",
+      "detail": "Videon play-napilla on tunnettu data-video-play-toiminto.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "video_cv_poster (index.html:602)",
+      "target": "video-cv-player",
+      "detail": "Videon avausnapilla on tunnettu data-video-trigger-toiminto ja YouTube ID.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "video_cv_button (index.html:624)",
+      "target": "video-cv-player",
+      "detail": "Videon avausnapilla on tunnettu data-video-trigger-toiminto ja YouTube ID.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button",
+      "label": "Asetukset (index.html:674)",
+      "target": "privacy-settings",
+      "detail": "Tietosuoja-asetusten avausnapilla on tunnettu toiminto.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "nav_news (index.html:177)",
+      "target": "#news",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "nav_campaign (index.html:178)",
+      "target": "#campaign",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "nav_archive (index.html:179)",
+      "target": "#archive",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "nav_media (index.html:180)",
+      "target": "#media",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "nav_contact (index.html:181)",
+      "target": "#contact",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "nav_extra (index.html:182)",
+      "target": "extra.html",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "portfolio_role_continue_full (index.html:411)",
+      "target": "#news",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "email_hero (index.html:440)",
+      "target": "mailto:redacted",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "archive_button (index.html:441)",
+      "target": "#archive",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "cv_button (index.html:516)",
+      "target": "/files/cv.pdf",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "cover_letter_button (index.html:525)",
+      "target": "/files/saatekirje.pdf",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "manuscript_button (index.html:534)",
+      "target": "/files/kasikirjoitus.pdf",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "business_card_button (index.html:543)",
+      "target": "/files/kayntikortti.pdf",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "youtube_creative_career (index.html:628)",
+      "target": "https://www.youtube.com/watch?v=SQt0zvktlkw",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "youtube_ship_of_ideas (index.html:632)",
+      "target": "https://www.youtube.com/watch?v=yUSa00QPDRw",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "instagram_button (index.html:636)",
+      "target": "https://www.instagram.com/taidetta_taidetta/",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "linkedin_button (index.html:640)",
+      "target": "https://www.linkedin.com/in/jani-myllymaki/",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "email_contact (index.html:663)",
+      "target": "mailto:redacted",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "button",
+      "type": "button-link",
+      "label": "privacy_notice_button (index.html:673)",
+      "target": "privacy.html",
+      "detail": "Linkkinapilla on href ja analytiikan tunniste.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "form",
+      "type": "form",
+      "label": "Lomakkeet",
+      "target": "index.html",
+      "detail": "Sivulla ei ole lomakkeita, joten rikkinäisiä form action -osoitteita ei löytynyt.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "cloudflare-pages",
+      "type": "cloudflare-pages",
+      "label": "Sivuston etusivu",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "Siirry sisältöön (index.html:153)",
+      "target": "#main",
+      "detail": "Ankkurikohde #main löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "nav_news (index.html:177)",
+      "target": "#news",
+      "detail": "Ankkurikohde #news löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "nav_campaign (index.html:178)",
+      "target": "#campaign",
+      "detail": "Ankkurikohde #campaign löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "nav_archive (index.html:179)",
+      "target": "#archive",
+      "detail": "Ankkurikohde #archive löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "nav_media (index.html:180)",
+      "target": "#media",
+      "detail": "Ankkurikohde #media löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "nav_contact (index.html:181)",
+      "target": "#contact",
+      "detail": "Ankkurikohde #contact löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "file",
+      "label": "nav_extra (index.html:182)",
+      "target": "extra.html",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (10159 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "nav_extra (index.html:182)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/extra.html?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "Visuaalinen työnhakukampanja Yhtenäinen kampanjailme kokoaa CV:n, saatekirjeen ja printin samaksi tarinaksi. (index.html:284)",
+      "target": "#campaign",
+      "detail": "Ankkurikohde #campaign löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "Video-CV Uutislähetyksen muoto yhdistää käsikirjoituksen, visuaalisen kerronnan ja editoinnin. (index.html:290)",
+      "target": "#media",
+      "detail": "Ankkurikohde #media löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "Future Maker -portfolio Sanomalehtimäinen verkkokonsepti näyttää typografian, sisältöhierarkian ja digitaalisen toteutuksen. (index.html:296)",
+      "target": "#news",
+      "detail": "Ankkurikohde #news löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "Työnhakukampanja kokonaisuutena Henkilöbrändi, verkkosivu, videot ja painotuotteet muodostavat yhden asiakaspolun. (index.html:328)",
+      "target": "#campaign",
+      "detail": "Ankkurikohde #campaign löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "LinkedIn- ja sisältökonseptit Ammatilliset sisällöt jatkavat kampanjan tarinaa kanavasta toiseen. (index.html:334)",
+      "target": "#media",
+      "detail": "Ankkurikohde #media löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "file",
+      "label": "Portfolion analytiikka ja käyttäjäpolut Suostumukseen perustuva mittaus tukee sisältöjen ja kävijäpolkujen kehittämistä. (index.html:340)",
+      "target": "privacy.html",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (9882 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "Portfolion analytiikka ja käyttäjäpolut Suostumukseen perustuva mittaus tukee sisältöjen ja kävijäpolkujen kehittämistä. (index.html:340)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/privacy.html?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "AI-avusteinen Future Maker -portfolio Kevyt verkkototeutus yhdistää oman konseptin, käyttöliittymän ja AI-avusteisen kehitystyön. (index.html:372)",
+      "target": "#news",
+      "detail": "Ankkurikohde #news löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "file",
+      "label": "Portfolion AI-agenttikerros HTML-, JSON-LD- ja JSON-rakenne tekee sisällöstä koneellisesti ymmärrettävää. (index.html:378)",
+      "target": "ai.html",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (36763 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "Portfolion AI-agenttikerros HTML-, JSON-LD- ja JSON-rakenne tekee sisällöstä koneellisesti ymmärrettävää. (index.html:378)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/ai.html?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "file",
+      "label": "Analytiikka-, automaatio- ja GDPR-ratkaisut Suostumusohjattu analytiikka yhdistää kevyen automaation ja yksityisyyden suojan. (index.html:384)",
+      "target": "privacy.html",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (9882 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "Analytiikka-, automaatio- ja GDPR-ratkaisut Suostumusohjattu analytiikka yhdistää kevyen automaation ja yksityisyyden suojan. (index.html:384)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/privacy.html?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "portfolio_role_continue_full (index.html:411)",
+      "target": "#news",
+      "detail": "Ankkurikohde #news löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "contact-link",
+      "label": "email_hero (index.html:440)",
+      "target": "mailto:redacted",
+      "detail": "Yhteystietolinkki on muodollisesti oikein.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "anchor-link",
+      "label": "archive_button (index.html:441)",
+      "target": "#archive",
+      "detail": "Ankkurikohde #archive löytyy sivulta.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "pdf",
+      "label": "cv_button (index.html:516)",
+      "target": "files/cv.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (445297 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "cv_button (index.html:516)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/cv.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "pdf",
+      "label": "cover_letter_button (index.html:525)",
+      "target": "files/saatekirje.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (800256 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "cover_letter_button (index.html:525)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/saatekirje.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "pdf",
+      "label": "manuscript_button (index.html:534)",
+      "target": "files/kasikirjoitus.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (36304 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "manuscript_button (index.html:534)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kasikirjoitus.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "pdf",
+      "label": "business_card_button (index.html:543)",
+      "target": "files/kayntikortti.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (1043792 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "business_card_button (index.html:543)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kayntikortti.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "external-link",
+      "type": "external-link",
+      "label": "youtube_creative_career (index.html:628)",
+      "target": "https://www.youtube.com/watch?v=SQt0zvktlkw",
+      "detail": "HEAD 200 OK -> https://www.youtube.com/watch?v=SQt0zvktlkw",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "external-link",
+      "type": "external-link",
+      "label": "youtube_ship_of_ideas (index.html:632)",
+      "target": "https://www.youtube.com/watch?v=yUSa00QPDRw",
+      "detail": "HEAD 200 OK -> https://www.youtube.com/watch?v=yUSa00QPDRw",
+      "recommendation": ""
+    },
+    {
+      "status": "warning",
+      "area": "external-link",
+      "type": "external-link",
+      "label": "instagram_button (index.html:636)",
+      "target": "https://www.instagram.com/taidetta_taidetta/",
+      "detail": "HEAD 429 Too Many Requests. Palvelu tai paikallinen verkkoympäristö todennäköisesti estää automaatiopyynnön, vaikka linkki voi toimia selaimessa.",
+      "recommendation": "Tarkista linkki selaimessa. Jos se toimii, tämä varoitus on hyväksyttävä some-/YouTube-bot-suojauksen vuoksi."
+    },
+    {
+      "status": "warning",
+      "area": "external-link",
+      "type": "external-link",
+      "label": "linkedin_button (index.html:640)",
+      "target": "https://www.linkedin.com/in/jani-myllymaki/",
+      "detail": "GET 999 <none>. Palvelu tai paikallinen verkkoympäristö todennäköisesti estää automaatiopyynnön, vaikka linkki voi toimia selaimessa.",
+      "recommendation": "Tarkista linkki selaimessa. Jos se toimii, tämä varoitus on hyväksyttävä some-/YouTube-bot-suojauksen vuoksi."
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "contact-link",
+      "label": "email_contact (index.html:663)",
+      "target": "mailto:redacted",
+      "detail": "Yhteystietolinkki on muodollisesti oikein.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "file",
+      "label": "privacy_notice_button (index.html:673)",
+      "target": "privacy.html",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (9882 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "link",
+      "type": "cloudflare-pages",
+      "label": "privacy_notice_button (index.html:673)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/privacy.html?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "Piirretty muotokuva Jani Myllymäestä punaisessa takissa (index.html:446)",
+      "target": "assets/images/jani-profile.jpg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (59089 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "cloudflare-pages",
+      "label": "Piirretty muotokuva Jani Myllymäestä punaisessa takissa (index.html:446)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/assets/images/jani-profile.jpg?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "Video-CV:n esikatselukuva: uutisankkuri studiolähetyksessä (index.html:613)",
+      "target": "assets/images/video-poster.jpg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (129678 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "cloudflare-pages",
+      "label": "Video-CV:n esikatselukuva: uutisankkuri studiolähetyksessä (index.html:613)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/assets/images/video-poster.jpg?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "file",
+      "label": "script (index.html:682)",
+      "target": "assets/content-config.js",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (788 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "cloudflare-pages",
+      "label": "script (index.html:682)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/assets/content-config.js?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "file",
+      "label": "script (index.html:683)",
+      "target": "script.js",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (75131 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "cloudflare-pages",
+      "label": "script (index.html:683)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/script.js?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "file",
+      "label": "alternate (index.html:23)",
+      "target": "portfolio.json",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (12055 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "cloudflare-pages",
+      "label": "alternate (index.html:23)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/portfolio.json?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "file",
+      "label": "stylesheet (index.html:150)",
+      "target": "styles.css",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (60079 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "cloudflare-pages",
+      "label": "stylesheet (index.html:150)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/styles.css?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "pdf",
+      "label": "content-config document: cv",
+      "target": "files/cv.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (445297 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "cloudflare-pages",
+      "label": "content-config document: cv",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/cv.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "pdf",
+      "label": "content-config document: coverLetters",
+      "target": "files/saatekirje.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (800256 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "cloudflare-pages",
+      "label": "content-config document: coverLetters",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/saatekirje.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "pdf",
+      "label": "content-config document: manuscripts",
+      "target": "files/kasikirjoitus.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (36304 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "cloudflare-pages",
+      "label": "content-config document: manuscripts",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kasikirjoitus.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "pdf",
+      "label": "content-config document: businessCard",
+      "target": "files/kayntikortti.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (1043792 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "document",
+      "type": "cloudflare-pages",
+      "label": "content-config document: businessCard",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kayntikortti.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/server/chromium/appIcon.png",
+      "target": "node_modules/playwright-core/lib/server/chromium/appIcon.png",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (16565 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/tools/dashboard/appIcon.png",
+      "target": "node_modules/playwright-core/lib/tools/dashboard/appIcon.png",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (18945 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/vite/dashboard/assets/firefox-1bWoP6pv.svg",
+      "target": "node_modules/playwright-core/lib/vite/dashboard/assets/firefox-1bWoP6pv.svg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (7488 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/vite/dashboard/assets/firefox-beta-k3eOH_eK.svg",
+      "target": "node_modules/playwright-core/lib/vite/dashboard/assets/firefox-beta-k3eOH_eK.svg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (9280 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/vite/dashboard/assets/firefox-nightly-Cp5nfeDT.svg",
+      "target": "node_modules/playwright-core/lib/vite/dashboard/assets/firefox-nightly-Cp5nfeDT.svg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (9143 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/vite/dashboard/assets/safari-na3_-uQk.svg",
+      "target": "node_modules/playwright-core/lib/vite/dashboard/assets/safari-na3_-uQk.svg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (5254 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/vite/dashboard/playwright-logo.svg",
+      "target": "node_modules/playwright-core/lib/vite/dashboard/playwright-logo.svg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (5645 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/vite/recorder/playwright-logo.svg",
+      "target": "node_modules/playwright-core/lib/vite/recorder/playwright-logo.svg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (5033 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "media",
+      "type": "image",
+      "label": "project media: node_modules/playwright-core/lib/vite/traceViewer/playwright-logo.svg",
+      "target": "node_modules/playwright-core/lib/vite/traceViewer/playwright-logo.svg",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (5033 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "asset",
+      "type": "external-link",
+      "label": "canonical (index.html:22)",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/",
+      "detail": "HEAD 200 OK -> https://tulevaisuudentekija.janmyllymaki.workers.dev/",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "embed",
+      "type": "external-link",
+      "label": "content-config video source",
+      "target": "https://www.youtube-nocookie.com/embed/WtUr1wuRRBU?rel=0&modestbranding=1&playsinline=1",
+      "detail": "HEAD 200 OK -> https://www.youtube-nocookie.com/embed/WtUr1wuRRBU?rel=0&modestbranding=1&playsinline=1",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "pdf",
+      "label": "CV",
+      "target": "files/cv.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (445297 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "cloudflare-pages",
+      "label": "CV",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/cv.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "pdf",
+      "label": "Saatekirje",
+      "target": "files/saatekirje.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (800256 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "cloudflare-pages",
+      "label": "Saatekirje",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/saatekirje.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "pdf",
+      "label": "Käsikirjoitus",
+      "target": "files/kasikirjoitus.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (36304 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "cloudflare-pages",
+      "label": "Käsikirjoitus",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kasikirjoitus.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "pdf",
+      "label": "Käyntikortti",
+      "target": "files/kayntikortti.pdf",
+      "detail": "Tiedosto löytyi ja perusmuoto täsmää (1043792 tavua).",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "cloudflare-pages",
+      "label": "Käyntikortti",
+      "target": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kayntikortti.pdf?healthcheck=1",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "portfolio-assets",
+      "type": "external-link",
+      "label": "Video CV YouTube",
+      "target": "https://www.youtube.com/embed/WtUr1wuRRBU",
+      "detail": "HEAD 200 OK -> https://www.youtube.com/embed/WtUr1wuRRBU",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "embed",
+      "type": "external-link",
+      "label": "Video CV embed",
+      "target": "https://www.youtube.com/embed/WtUr1wuRRBU",
+      "detail": "HEAD 200 OK -> https://www.youtube.com/embed/WtUr1wuRRBU",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "area": "embed",
+      "type": "youtube-embed",
+      "label": "Video CV oEmbed",
+      "target": "WtUr1wuRRBU",
+      "detail": "HEAD 200 OK",
+      "recommendation": ""
+    },
+    {
+      "status": "skipped",
+      "area": "analytics",
+      "type": "analytics-endpoint",
+      "label": "Google Sheets endpoint",
+      "target": "https://script.google.com/macros/s/AKfycbyjES-pzC5uuWF84jx4_AHafMKoGMP55JVPF5DKuvbL6owZWj6Vowe_yib4viQWGqHbpw/exec",
+      "detail": "Endpointin kirjoittava testi ohitettiin, jotta analytiikkadataan ei synny testiriviä.",
+      "recommendation": "Aja CHECK_ANALYTICS_POST=1, jolloin POST merkitään arvoilla eventType=system_check, visitorType=automation ja source=monthly_link_check."
+    }
+  ]
+}
