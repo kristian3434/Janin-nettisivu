@@ -1,0 +1,12 @@
+{
+  "name": "future-maker-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:site": "node tools/monthly-site-check.mjs",
+    "check:buttons": "node tools/monthly-button-check.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.61.1"
+  }
+}

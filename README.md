@@ -1,8 +1,41 @@
 # Portfolio-sivuston kuukausittainen toimivuustarkistus
 
-Tässä projektissa on kevyt automaatio, joka tarkistaa kerran kuukaudessa, että portfolio toimii rekryttäjille: linkit, napit, PDF:t, kuvat, videot, YouTube-upotus, arkisto-osio ja analytiikka-asetukset käydään läpi ilman raskasta selaintestiä.
+Tässä projektissa on automaatio, joka tarkistaa kerran kuukaudessa, että portfolio toimii rekrytoijille. Staattinen tarkistus käy läpi linkit, PDF:t, kuvat, videot, YouTube-upotuksen, arkisto-osion ja analytiikka-asetukset. Lisäksi oikea Chromium-selain avaa sivuston ja käyttää kaikki napit sekä linkkinapit yksi kerrallaan.
 
-Automaatio on toteutettu tiedostolla `tools/monthly-site-check.mjs` ja GitHub Actions -ajastuksella `.github/workflows/monthly-site-check.yml`.
+Automaatio on toteutettu tiedostoilla `tools/monthly-site-check.mjs` ja `tools/monthly-button-check.mjs` sekä GitHub Actions -ajastuksella `.github/workflows/monthly-site-check.yml`.
+
+## Roolikohtaiset portfolionäkymät
+
+Etusivun alussa oleva kevyt roolivalitsin tarjoaa rekrytoijalle kolme suositeltua työnäytelinkkiä ja kuusi keskeistä taitoa. Linkit vievät olemassa oleviin portfolio-osioihin tai niitä täydentäville nykyisille sivuille; projektien sisältöä ei kopioida rooliosioon. Valittavissa ovat:
+
+- `creative-design`
+- `digital-marketing`
+- `ai-solutions`
+- `all`
+
+Ilman `role`-parametria valitsin käynnistyy neutraalissa `unselected`-tilassa. Silloin yksikään painike ei ole aktiivinen, roolikohtaista profiilia ei näytetä ja alkuperäinen portfolio jatkuu normaalisti valitsimen alla. `unselected` ei ole käyttäjälle lähetettävä URL-parametri. Myös virheellinen arvo palautetaan tähän neutraaliin tilaan ja poistetaan URL:sta säilyttäen muut parametrit sekä hash-osa.
+
+Suoran näkymän voi avata esimerkiksi osoitteella `/?role=creative-design`. Myös `digital-marketing`, `ai-solutions` ja `all` toimivat suorina osoitteina. Valinta päivittää URL:n ilman sivulatausta, ja selaimen takaisin- ja eteenpäin-painikkeet palauttavat oikean näkymän.
+
+Roolin sisältö on omassa `data-role-panel`-elementissään:
+
+```html
+<article class="role-profile" data-role-panel="creative-design">
+  <!-- Lyhyt esittely, kolme linkkiä ja enintään kuusi taitoa -->
+</article>
+```
+
+Kun päivität roolikohtaisia suosituksia:
+
+1. muokkaa oikeaa `data-role-panel`-elementtiä `index.html`-tiedostossa
+2. pidä suositusten määrä enintään kolmessa ja taitojen määrä enintään kuudessa
+3. linkitä suositus olemassa olevaan osioon tai nykyiseen projektisivuun
+4. lisää FI- ja EN-tekstit `script.js`-tiedoston käännössanastoihin
+5. päivitä koneellisesti luettavat roolitiedot `portfolio.json`- ja `ai.html`-tiedostoihin vain, jos itse alkuperäinen projektisisältö muuttuu
+
+JavaScript vaihtaa vain aktiivisen esittelyn, kolme suositusta, kuusi taitoa ja painikkeen tilan. Se ei siirrä alkuperäisen portfolion DOM-elementtejä. Ilman JavaScriptiä rooliosio näyttää neutraalin ohjetekstin ja kaikki alkuperäiset portfolio-osiot näkyvät normaalisti.
+
+Roolivalinnan analytiikkatapahtuma on `portfolio_role_selected`. `button_label`-kentässä käytetään arvoja `portfolio_role_creative_design`, `portfolio_role_digital_marketing`, `portfolio_role_ai_solutions` ja `portfolio_role_all`. Koko portfolioon jatkava linkki käyttää nykyistä `button_click`-tapahtumaa ja tunnistetta `portfolio_role_continue_full`. Neutraali aloitustila ei lähetä tapahtumaa. Uusia tunnisteita, evästeitä tai henkilötietokenttiä ei lisätä, ja tapahtumat lähetetään vain, jos analytiikkasuostumus on hyväksytty.
 
 ## 1. Miten automaatio toimii
 
@@ -15,7 +48,7 @@ Tarkistin lukee sivuston staattiset tiedostot ja asetukset:
 - `files/`
 - `assets/`
 
-Se tarkistaa:
+Staattinen tarkistus tarkistaa:
 
 - kaikki `<a>`-linkit
 - kaikki `<button>`-napit ja niiden tunnetut sivustotoiminnot
@@ -28,6 +61,21 @@ Se tarkistaa:
 - vanhat Wix-polut
 - analytiikka-endpointin asetuksen turvallisesti ilman kirjoittavaa testiä oletuksena
 
+Selaintarkistus käy läpi projektin kaikki HTML-sivut ja testaa:
+
+- jokaisen aidon `<button>`-elementin
+- jokaisen `data-track="button_click"` -linkkinapin
+- jokaisen `.button`-luokalla tyylitellyn linkkinapin
+- FI- ja EN-kielenvaihdon
+- kaikki neljä portfolion roolivalintaa
+- videon avauksen, latauksen, toiston varanapin ja sulkemisen
+- tietosuoja-asetusten avauksen
+- kaikki sisäiset, ulkoiset, PDF-, ankkuri- ja sähköpostinapit
+- evästesuostumuksen **Hyväksy**, **Vain välttämättömät** ja **Hylkää** -napit
+- evästesuostumusikkunan tietosuojalinkin
+
+Evästevalinnat ajetaan erillisissä puhtaissa selaintiloissa. Näin yhden valinnan tallennus ei peitä muita valintoja testiltä. Terveystarkistuksen `healthcheck=1`-parametri estää testiklikkauksia kirjoittamasta oikeaa analytiikkadataa.
+
 Automaatio ei muuta sivuston visuaalisuutta, tekstejä, rakennetta tai brändi-ilmettä.
 
 ## 2. Miten se ajetaan käsin
@@ -36,6 +84,14 @@ Aja projektikansion juuressa:
 
 ```bash
 node tools/monthly-site-check.mjs
+node tools/monthly-button-check.mjs
+```
+
+Selaintarkistus tarvitsee ensin projektin riippuvuudet ja Chromiumin:
+
+```bash
+npm install
+npx playwright install chromium
 ```
 
 Jos haluat tarkistaa myös julkaistun Cloudflare Pages -osoitteen, anna sivuston julkinen osoite:
@@ -66,7 +122,7 @@ cron: "13 7 1 * *"
 
 Tämä tarkoittaa kuukauden ensimmäistä päivää klo 07:13 UTC. Suomessa aika on talviaikaan 09:13 ja kesäaikaan 10:13.
 
-Työn aikaraja on 5 minuuttia. Tarkistus tekee vain kevyitä HTTP-pyyntöjä, joten kuukausikulutus pysyy normaalisti muutamassa minuutissa ja noin 100-200 pyynnön alapuolella.
+Työn aikaraja on 12 minuuttia. Käytännössä staattinen tarkistus ja yhden Chromium-selaimen nappikierros valmistuvat tavallisesti muutamassa minuutissa.
 
 Tarkistuksen voi käynnistää myös käsin GitHubissa kohdasta:
 
@@ -86,10 +142,12 @@ Raportit tallentuvat kansioon:
 reports/monthly-site-checks/
 ```
 
-Jokaisesta ajosta syntyy kaksi tiedostoa:
+Jokaisesta ajosta syntyy staattisen tarkistuksen raportti ja erillinen nappien selaintestiraportti. Kummastakin syntyy kaksi tiedostoa:
 
 - `.md` on ihmiselle luettava raportti
 - `.json` on koneellisesti luettava raportti
+
+Nappiraportin tiedostonimi päättyy muotoon `-buttons.md` tai `-buttons.json`. Jos nappi epäonnistuu, raporttikansioon tallennetaan myös virhetilanteen kuvakaappaus.
 
 Raportissa näkyy:
 
