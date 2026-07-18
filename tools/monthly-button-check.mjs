@@ -396,13 +396,27 @@ async function exerciseButton(page, locator, target) {
   throw new Error("Nappia ei tunnistettu selaimessa testattavaksi toiminnoksi.");
 }
 
+function normalizedDestinationPathname(value) {
+  const pathname = String(value || "/").replace(/\/{2,}/g, "/");
+
+  if (pathname === "/index.html") {
+    return "/";
+  }
+
+  if (pathname.endsWith(".html")) {
+    return pathname.slice(0, -5) || "/";
+  }
+
+  return pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+}
+
 function sameDestination(actualValue, expectedValue) {
   const actual = new URL(actualValue);
   const expected = new URL(expectedValue);
   return (
     actual.origin === expected.origin &&
-    actual.pathname.replace(/\/index\.html$/, "/") ===
-      expected.pathname.replace(/\/index\.html$/, "/") &&
+    normalizedDestinationPathname(actual.pathname) ===
+      normalizedDestinationPathname(expected.pathname) &&
     actual.hash === expected.hash
   );
 }
@@ -464,6 +478,43 @@ async function exerciseLink(page, context, locator, target) {
     }
 
     return `Klikkaus käynnisti navigoinnin osoitteeseen ${destination.hostname}.`;
+  }
+
+  if (/\.pdf$/i.test(destination.pathname)) {
+    const downloadWait = page
+      .waitForEvent("download", { timeout: settings.timeoutMs })
+      .then((download) => {
+        ensure(
+          sameDestination(download.url(), destination.toString()),
+          `PDF-lataus meni väärään osoitteeseen: ${download.url()}`
+        );
+        return {
+          kind: "download",
+          filename: download.suggestedFilename(),
+        };
+      });
+    const navigationWait = page
+      .waitForURL(
+        (url) => sameDestination(url.toString(), destination.toString()),
+        { timeout: settings.timeoutMs, waitUntil: "domcontentloaded" }
+      )
+      .then(() => ({ kind: "navigation", filename: path.basename(destination.pathname) }));
+    let clickError;
+
+    try {
+      await locator.click({ noWaitAfter: true, timeout: settings.timeoutMs });
+    } catch (error) {
+      clickError = error;
+    }
+
+    try {
+      const outcome = await Promise.any([downloadWait, navigationWait]);
+      return outcome.kind === "download"
+        ? `Klikkaus käynnisti PDF-latauksen ${outcome.filename}.`
+        : `Klikkaus avasi PDF-kohteen ${destination.pathname}.`;
+    } catch (error) {
+      throw clickError || error;
+    }
   }
 
   try {
