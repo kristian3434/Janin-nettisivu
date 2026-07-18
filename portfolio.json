@@ -1,0 +1,205 @@
+{
+  "name": "Jani Myllymäki",
+  "professional_summary": "Luovasuunnittelija ja kampanjantekijä, joka yhdistää visuaalisen suunnittelun, tarinankerronnan, videotuotannon, musiikin, printin ja AI-avusteisen työskentelyn.",
+  "role_profiles": [
+    {
+      "id": "creative-design",
+      "name_fi": "Luova digitaalinen suunnittelija",
+      "name_en": "Creative Digital Designer"
+    },
+    {
+      "id": "digital-marketing",
+      "name_fi": "Digimarkkinointi ja sisällöntuotanto",
+      "name_en": "Digital Marketing and Content"
+    },
+    {
+      "id": "ai-solutions",
+      "name_fi": "AI-avusteiset digitaaliset ratkaisut",
+      "name_en": "AI-Assisted Digital Solutions"
+    }
+  ],
+  "skills": [
+    "kampanjasuunnittelu",
+    "visuaalinen suunnittelu",
+    "tarinankerronta",
+    "videotuotanto",
+    "videoeditointi",
+    "musiikkituotanto",
+    "kuvankäsittely",
+    "printtisuunnittelu",
+    "sisällöntuotanto",
+    "AI-avusteinen työskentely"
+  ],
+  "tools": [
+    "Photoshop",
+    "Final Cut Pro",
+    "Lightroom",
+    "Logic Pro",
+    "Canva",
+    "Widnoz",
+    "CapCut",
+    "HeyGen",
+    "Affinity Publisher",
+    "Nano Banana",
+    "Cloudflare",
+    "AI- ja agenttityökalut"
+  ],
+  "projects": [
+    {
+      "name": "Future Maker -portfolio",
+      "type": "portfolio / verkkosivusto",
+      "role_categories": ["creative-design", "digital-marketing", "ai-solutions"],
+      "description": "Retrohenkinen kampanjasivusto, joka kokoaa työnhakumateriaalit, videot, yhteystiedot ja tietosuojaratkaisun yhdeksi kokonaisuudeksi.",
+      "problem": "Perinteinen työnhaku ei yksin näyttänyt, miten Jani ajattelee, suunnittelee ja kommunikoi.",
+      "solution": "Uutiskonseptiin rakennettu kaksikielinen portfolio, jossa työnäytteet, videot, dokumentit ja yhteydenotto löytyvät samasta kampanjasta.",
+      "role": [
+        "ideointi",
+        "konseptointi",
+        "määrittely",
+        "visuaalinen suunnittelu",
+        "sisällön arviointi",
+        "testaus",
+        "virheiden tunnistaminen",
+        "AI-työkalujen ohjaaminen"
+      ],
+      "tools": ["HTML", "CSS", "JavaScript", "Cloudflare", "AI- ja agenttityökalut"],
+      "workflow": ["uutiskonseptin määrittely", "sisältöjen kokoaminen", "visuaalinen suunnittelu", "AI-avusteinen toteutus", "laadun arviointi", "testaus"],
+      "results": ["Toimiva kaksikielinen portfolio", "Työnäytteet, suostumuslogiikka ja tietosuoja samassa kokonaisuudessa"],
+      "status": "nykyinen portfolio",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/"
+    },
+    {
+      "name": "Työnhaku kuin mainoskampanja",
+      "type": "henkilökohtainen brändikampanja",
+      "role_categories": ["creative-design", "digital-marketing"],
+      "description": "Työnhaku on toteutettu luovana mediaprojektina ja yhtenäisenä Future Maker -brändikampanjana.",
+      "problem": "Perinteinen hakupaketti ei tehnyt luovaa ajattelua, visuaalista osaamista ja toteutuskykyä näkyväksi.",
+      "solution": "Sanomalehtityylinen CV, uutisteemainen saatekirje, video-CV, kampanjasivusto ja painettu käyntikortti saman brändin alla.",
+      "role": ["ideointi", "konseptointi", "visuaalinen suunnittelu", "käsikirjoitus", "sisällöntuotanto", "viimeistely", "AI-työkalujen ohjaaminen"],
+      "tools": ["Canva", "Photoshop", "Final Cut Pro", "Logic Pro", "CapCut", "Widnoz", "Affinity Publisher", "Nano Banana"],
+      "workflow": ["brändi- ja uutiskonsepti", "CV:n ja saatekirjeen taitto", "videotuotanto", "verkkosivuston kokoaminen", "printti- ja QR-jatkumon suunnittelu"],
+      "results": ["Yhtenäinen työnhakukampanja", "Visuaalisen suunnittelun, videon, äänen, printin ja digitaalisen sisällön työnäyte"],
+      "status": "valmis työnäytekokonaisuus",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#campaign"
+    },
+    {
+      "name": "Video-CV: Luovuus sydämessä",
+      "type": "video-CV",
+      "role_categories": ["creative-design", "digital-marketing"],
+      "description": "1 minuutin 52 sekunnin video-CV on rakennettu iltauutislähetykseksi, jota tekoälyankkuri kuljettaa eteenpäin.",
+      "problem": "Perinteinen esittely ei tuonut osaamista ja persoonallista uutiskonseptia esiin videon keinoin.",
+      "solution": "4K 16:9 -uutislähetys, jossa AI-ankkuri esittelee digitaalisen median osaamista, työkaluja, harrastuksia ja jatkuvaa oppimista.",
+      "role": ["ideointi", "konseptointi", "määrittely", "käsikirjoitus", "visuaalinen suunnittelu", "AI-videotuotannon ohjaaminen", "editoinnin arviointi", "testaus"],
+      "tools": ["Widnoz", "CapCut"],
+      "workflow": ["uutiskonseptin suunnittelu", "käsikirjoitus", "AI-ankkurin toteutus", "leikkausrakenne", "viimeistely"],
+      "results": ["Valmis 1 minuutin 52 sekunnin video-CV", "Kaksisivuinen käsikirjoitus"],
+      "status": "julkaistu työnäyte",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#media"
+    },
+    {
+      "name": "Ideoiden laiva",
+      "type": "video ja musiikki",
+      "role_categories": ["creative-design"],
+      "description": "Tarinalähtöinen video, jonka Jani on ohjannut ja editoinut sekä säveltänyt musiikin itse.",
+      "problem": "Tarinalähtöisen videon piti välittää idean eteneminen selkeästi ja säilyttää yhtenäinen tunnelma ilman valmista musiikkiratkaisua.",
+      "solution": "Videon leikkaus rakennettiin etenemään selkeinä tarinallisina vaiheina. Jani sävelsi Logic Prolla alkuperäisen musiikin, joka sitoi kohtaukset yhteen, vahvisti rytmiä ja loi videolle yhtenäisen tunnelman.",
+      "role": ["ohjaus", "videoleikkaus", "musiikin sävellys", "tarinallinen editointi"],
+      "tools": ["Final Cut Pro", "Logic Pro"],
+      "workflow": ["ohjaus", "leikkaus", "sävellys", "viimeistely"],
+      "results": ["Valmis video- ja musiikkityönäyte"],
+      "status": "julkaistu työnäyte",
+      "url": "https://www.youtube.com/watch?v=yUSa00QPDRw"
+    },
+    {
+      "name": "Luova ura -sarja",
+      "type": "AI-avusteinen videosarja",
+      "role_categories": ["creative-design", "digital-marketing", "ai-solutions"],
+      "description": "Alkuperäinen minisarja mainosalan kulissien takaa.",
+      "problem": "Mainosalan kulissien takainen sisältö piti muuttaa helposti seurattavaksi ja visuaalisesti yhtenäiseksi videosarjaksi ilman erillistä studiotuotantoa jokaista jaksoa varten.",
+      "solution": "Sarja toteutettiin HeyGenin AI-avatarilla, joka mahdollisti yhdenmukaisen esiintyjän ja tuotantotavan jaksosta toiseen. CapCutilla rakennettiin yhteinen rytmi, visuaalinen ilme ja viimeistely, jotta kulissien takaiset aiheet toimivat selkeänä minisarjana.",
+      "role": ["AI-avatarin hyödyntäminen", "videosarjan rakentaminen", "viimeistely"],
+      "tools": ["HeyGen", "CapCut"],
+      "workflow": ["sarjan rakentaminen", "AI-avatarin käyttö", "editoinnin viimeistely"],
+      "results": ["Valmis minisarja mainosalan kulissien takaa"],
+      "status": "julkaistu työnäyte",
+      "url": "https://www.youtube.com/watch?v=SQt0zvktlkw"
+    },
+    {
+      "name": "Portfolion analytiikka- ja GDPR-ratkaisu",
+      "type": "yksityisyys ja analytiikka",
+      "role_categories": ["digital-marketing", "ai-solutions"],
+      "description": "Suostumukseen perustuva rajattu analytiikka ja ennen valintaa estetty kolmannen osapuolen videosisältö.",
+      "problem": "Portfolion käytettävyyttä haluttiin arvioida ilman tarpeetonta henkilötietojen keräämistä tai analytiikan asettamista käytön ehdoksi.",
+      "solution": "Analytiikka käynnistyy vain hyväksynnällä. YouTube-upotus käyttää youtube-nocookie.com-osoitetta eikä lataudu ennen hyväksyntää tai käyttäjän erillistä latauspainiketta.",
+      "role": ["ideointi", "määrittely", "suostumuspolun suunnittelu", "laadun arviointi", "testaus", "virheiden tunnistaminen", "AI-työkalujen ohjaaminen"],
+      "tools": ["JavaScript", "Google Apps Script", "Google Sheets", "Cloudflare"],
+      "workflow": ["minimaalisen tietomallin määrittely", "suostumusdialogi", "analytiikkalähetysten esto ilman hyväksyntää", "YouTube-latauksen viivästys", "tietosuojaseloste"],
+      "results": ["Sivusto toimii ilman analytiikkaa", "Analytiikkalokiin ei tallenneta nimeä, sähköpostiosoitetta, IP-osoitetta tai tarkkaa sijaintia"],
+      "status": "käytössä nykyisessä portfoliossa",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/privacy.html"
+    },
+    {
+      "name": "Koneellisesti luettava portfolio",
+      "type": "AI-agenteille ja hakukoneille suunniteltu sisältörakenne",
+      "role_categories": ["ai-solutions"],
+      "description": "Portfolion projektit, roolit, työkalut ja työnäytteet ovat saatavilla tekstipohjaisena HTML:nä, JSON-LD-metadatana ja JSON-yhteenvetona.",
+      "problem": "Visuaalinen portfolio ei yksin takaa, että hakukoneet, AI-agentit ja JavaScriptiä käyttämättömät lukijat ymmärtävät sisällön rakenteen.",
+      "solution": "Erillinen tekstipohjainen HTML-näkymä, staattinen portfolio.json, semanttinen HTML ja Schema.org-tyyppinen JSON-LD pitävät olennaisen sisällön koneellisesti luettavana ilman asiakaspään AI-kutsuja.",
+      "role": ["sisällön rakenteistaminen", "konseptointi", "määrittely", "laadun arviointi", "testaus", "AI-työkalujen ohjaaminen"],
+      "tools": ["HTML", "JSON", "JSON-LD", "Schema.org"],
+      "workflow": ["projektitietojen jäsentäminen", "kaksikielisen tekstinäkymän rakentaminen", "metadatan lisääminen", "indeksoitavuuden tarkistus"],
+      "results": ["Portfolio toimii ymmärrettävänä myös ilman JavaScriptiä", "Keskeiset projektit ja työnäytteet ovat saatavilla standardimuotoisena HTML- ja JSON-sisältönä"],
+      "status": "käytössä nykyisessä portfoliossa",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/ai"
+    }
+  ],
+  "documents": [
+    {
+      "name": "Ansioluettelo",
+      "type": "PDF",
+      "role_categories": ["creative-design", "digital-marketing"],
+      "description": "Sanomalehtimäinen CV kokoaa ammatillisen profiilin, osaamisen, työkalut, koulutuksen, kielet ja harrastukset sekä esittelee video-CV:n.",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/cv.pdf"
+    },
+    {
+      "name": "Saatekirje",
+      "type": "PDF",
+      "role_categories": ["creative-design", "digital-marketing"],
+      "description": "Uutisteemainen saatekirje kuvaa Future Maker -työnhakukampanjan, digitaalisen median osaamisen, käytetyt työkalut ja tavoitellun mainos- tai media-alan roolin.",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/saatekirje.pdf"
+    },
+    {
+      "name": "Video-CV:n käsikirjoitus",
+      "type": "PDF",
+      "role_categories": ["creative-design", "digital-marketing"],
+      "description": "Kaksisivuinen käsikirjoitus määrittelee 1 minuutin 52 sekunnin, 4K 16:9 -video-CV:n uutiskonseptin, AI-ankkurin osuudet ja leikkausrakenteen.",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kasikirjoitus.pdf"
+    },
+    {
+      "name": "Käyntikortti",
+      "type": "PDF",
+      "role_categories": ["creative-design"],
+      "description": "Kaksipuolinen käyntikortti yhdistää vuoden 1925 tunnelman, Affinity Publisher -taiton, julkisen sähköpostin ja portfolioon johtavan QR-koodin.",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/files/kayntikortti.pdf"
+    }
+  ],
+  "languages": [
+    {
+      "code": "fi",
+      "name": "Suomi",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/ai#suomi"
+    },
+    {
+      "code": "en",
+      "name": "English",
+      "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/ai#english"
+    }
+  ],
+  "contact": {
+    "email": "janmyllymaki@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/jani-myllymaki/",
+    "instagram": "https://www.instagram.com/taidetta_taidetta/"
+  },
+  "portfolio_url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/",
+  "last_updated": "2026-07-18"
+}

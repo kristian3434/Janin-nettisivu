@@ -16,6 +16,10 @@
 /assets/content-config.js
   Cache-Control: no-cache
 
+/portfolio.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: no-cache
+
 /script.js
   Cache-Control: no-cache
 

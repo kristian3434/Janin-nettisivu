@@ -8,6 +8,145 @@
       name="description"
       content="Jani Myllymäki - tulevaisuuden tekijä. Retrohenkinen kampanjasivusto dokumenteille, videoille ja yhteydenotolle."
     >
+    <script>
+      (function () {
+        var allowedRoles = ["creative-design", "digital-marketing", "ai-solutions", "all"];
+        var role = new URLSearchParams(window.location.search).get("role");
+        document.documentElement.classList.add("js", "role-pending");
+        document.documentElement.dataset.portfolioRole = allowedRoles.includes(role) ? role : "unselected";
+        window.addEventListener("load", function () {
+          document.documentElement.classList.remove("role-pending");
+        }, { once: true });
+      })();
+    </script>
+    <link rel="canonical" href="https://tulevaisuudentekija.janmyllymaki.workers.dev/">
+    <link rel="alternate" type="application/json" title="Jani Myllymäen portfolioaineisto" href="/portfolio.json">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Future Maker 2000 | Jani Myllymäki">
+    <meta property="og:description" content="Jani Myllymäki - tulevaisuuden tekijä. Retrohenkinen kampanjasivusto dokumenteille, videoille ja yhteydenotolle.">
+    <meta property="og:url" content="https://tulevaisuudentekija.janmyllymaki.workers.dev/">
+    <meta property="og:image" content="https://tulevaisuudentekija.janmyllymaki.workers.dev/assets/images/video-poster.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="Video CV: Luovuus sydämessä">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki",
+            "name": "Jani Myllymäki",
+            "email": "mailto:janmyllymaki@gmail.com",
+            "image": "https://tulevaisuudentekija.janmyllymaki.workers.dev/assets/images/jani-profile.jpg",
+            "address": { "@type": "PostalAddress", "addressCountry": "FI" },
+            "jobTitle": "Luovasuunnittelija ja kampanjantekijä",
+            "knowsAbout": [
+              "Kampanjasuunnittelu",
+              "Visuaalinen suunnittelu",
+              "Videotuotanto",
+              "Videoeditointi",
+              "Musiikkituotanto",
+              "Kuvankäsittely",
+              "Printtisuunnittelu",
+              "AI-avusteinen työskentely"
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/jani-myllymaki/",
+              "https://www.instagram.com/taidetta_taidetta/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#website",
+            "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/",
+            "name": "Future Maker 2000",
+            "inLanguage": ["fi", "en"],
+            "about": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#profile-page",
+            "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/",
+            "name": "Future Maker 2000 | Jani Myllymäki",
+            "isPartOf": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#website" },
+            "mainEntity": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" },
+            "hasPart": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#projects" },
+            "inLanguage": ["fi", "en"]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#projects",
+            "name": "Jani Myllymäen keskeiset työnäytteet",
+            "numberOfItems": 7,
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "item": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#future-maker-portfolio" } },
+              { "@type": "ListItem", "position": 2, "item": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#job-search-campaign" } },
+              { "@type": "ListItem", "position": 3, "item": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#video-cv" } },
+              { "@type": "ListItem", "position": 4, "item": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#ship-of-ideas" } },
+              { "@type": "ListItem", "position": 5, "item": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#creative-career-series" } },
+              { "@type": "ListItem", "position": 6, "item": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#privacy-analytics" } },
+              { "@type": "ListItem", "position": 7, "item": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#machine-readable-portfolio" } }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#future-maker-portfolio",
+            "name": "Future Maker -portfolio",
+            "description": "Retrohenkinen kampanjasivusto, joka kokoaa Jani Myllymäen työnhakumateriaalit, videot, yhteystiedot ja tietosuojaratkaisun.",
+            "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/",
+            "creator": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#job-search-campaign",
+            "name": "Työnhaku kuin mainoskampanja",
+            "description": "Henkilökohtainen brändikampanja, joka yhdistää sanomalehtityylisen CV:n, saatekirjeen, video-CV:n, verkkosivuston ja painetun käyntikortin.",
+            "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#campaign",
+            "creator": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#video-cv",
+            "name": "Video-CV: Luovuus sydämessä",
+            "description": "Uutislähetykseksi rakennettu 1 minuutin 52 sekunnin video-CV, jossa tekoälyankkuri esittelee Janin osaamista.",
+            "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#media",
+            "creator": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#ship-of-ideas",
+            "name": "Ideoiden laiva",
+            "description": "Janin ohjaama ja editoima video, johon hän sävelsi musiikin Logic Prolla.",
+            "url": "https://www.youtube.com/watch?v=yUSa00QPDRw",
+            "creator": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#creative-career-series",
+            "name": "Luova ura -sarja",
+            "description": "AI-avatarilla toteutettu ja CapCutilla viimeistelty minisarja mainosalan kulissien takaa.",
+            "url": "https://www.youtube.com/watch?v=SQt0zvktlkw",
+            "creator": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#privacy-analytics",
+            "name": "Portfolion analytiikka- ja GDPR-ratkaisu",
+            "description": "Suostumukseen perustuva rajattu analytiikka ja ennen suostumusta estetty YouTube-upotus. Sivusto toimii myös ilman analytiikkaa.",
+            "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/privacy.html",
+            "creator": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#machine-readable-portfolio",
+            "name": "Koneellisesti luettava portfolio",
+            "description": "Tekstipohjainen HTML-, JSON-LD- ja JSON-sisältörakenne tekee projektit, roolit ja työnäytteet ymmärrettäviksi hakukoneille ja AI-agenteille.",
+            "url": "https://tulevaisuudentekija.janmyllymaki.workers.dev/ai",
+            "creator": { "@id": "https://tulevaisuudentekija.janmyllymaki.workers.dev/#jani-myllymaki" }
+          }
+        ]
+      }
+    </script>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -15,7 +154,7 @@
 
     <div class="scanlines" aria-hidden="true"></div>
     <div class="page-frame">
-      <header class="topbar" aria-label="Sivuston ylätunniste">
+      <header class="topbar" aria-label="Sivuston ylätunniste" data-i18n-aria="siteHeaderAria">
         <div class="browser-row">
           <div class="window-controls" aria-hidden="true">
             <span></span><span></span><span></span>
@@ -28,28 +167,269 @@
           </div>
         </div>
 
-        <div class="masthead" aria-label="Lehden nimi">
+        <div class="masthead" aria-label="Lehden nimi" data-i18n-aria="mastheadAria">
           <p class="edition" data-i18n="edition">Numero 001 / Luova työnhaku</p>
           <p class="newspaper-name">Future Maker Times</p>
           <p class="tagline" data-i18n="tagline">Riippumaton uutishuone yhdelle rohkealle uratarinalle</p>
         </div>
 
-        <nav class="nav" aria-label="Päävalikko">
+        <nav class="nav" aria-label="Päävalikko" data-i18n-aria="mainNavAria">
           <a href="#news" data-track="button_click" data-button-name="nav_news" data-category="navigation" data-button-target="section-news" data-i18n="navNews">Pääotsikko</a>
           <a href="#campaign" data-track="button_click" data-button-name="nav_campaign" data-category="navigation" data-button-target="section-campaign" data-i18n="navCampaign">Kampanja</a>
           <a href="#archive" data-track="button_click" data-button-name="nav_archive" data-category="navigation" data-button-target="section-archive" data-i18n="navArchive">Asiakirjat</a>
           <a href="#media" data-track="button_click" data-button-name="nav_media" data-category="navigation" data-button-target="section-media" data-i18n="navMedia">Linkit</a>
           <a href="#contact" data-track="button_click" data-button-name="nav_contact" data-category="navigation" data-button-target="section-contact" data-i18n="navContact">Yhteys</a>
+          <a class="nav-extra" href="extra.html" data-track="button_click" data-button-name="nav_extra" data-category="navigation" data-button-target="extra-page" data-i18n="navExtra">Extra! – Näin portfolio rakennettiin</a>
         </nav>
       </header>
 
       <main id="main">
+        <section class="role-edition" id="role-view" aria-labelledby="role-view-title">
+          <header class="role-edition-header">
+            <p class="section-label" data-i18n="roleEditionLabel">Rekrytoijan erikoisnumero</p>
+            <h1 id="role-view-title" data-i18n="roleIdentityTitle">Monialainen digitaalinen suunnittelija</h1>
+            <p
+              id="role-identity-description"
+              class="role-identity-description"
+              data-i18n="roleIdentityDescription"
+            >
+              Yhdistän visuaalisen suunnittelun, sisällöntuotannon ja AI-avusteisen toteutuksen toimiviksi digitaalisiksi kokonaisuuksiksi.
+            </p>
+            <p id="role-view-instructions" class="role-edition-instructions" data-i18n="roleEditionInstructions">
+              Mitä osaamistani haluat tarkastella? Valitse tehtävää lähinnä oleva näkökulma tai avaa koko portfolio.
+            </p>
+          </header>
+
+          <div
+            class="role-options"
+            role="group"
+            aria-labelledby="role-view-instructions"
+            aria-describedby="role-identity-description"
+          >
+            <div class="role-primary-options">
+              <button
+                type="button"
+                class="role-option"
+                data-role-button="creative-design"
+                data-button-name="portfolio_role_creative_design"
+                data-category="portfolio_role"
+                data-button-target="?role=creative-design"
+                aria-pressed="false"
+              >
+                <span class="role-option-number" aria-hidden="true">01</span>
+                <span data-i18n="roleCreativeName">Luova digitaalinen suunnittelija</span>
+                <span class="role-option-check" aria-hidden="true">✓</span>
+              </button>
+              <button
+                type="button"
+                class="role-option"
+                data-role-button="digital-marketing"
+                data-button-name="portfolio_role_digital_marketing"
+                data-category="portfolio_role"
+                data-button-target="?role=digital-marketing"
+                aria-pressed="false"
+              >
+                <span class="role-option-number" aria-hidden="true">02</span>
+                <span data-i18n="roleMarketingName">Digimarkkinointi ja sisällöntuotanto</span>
+                <span class="role-option-check" aria-hidden="true">✓</span>
+              </button>
+              <button
+                type="button"
+                class="role-option"
+                data-role-button="ai-solutions"
+                data-button-name="portfolio_role_ai_solutions"
+                data-category="portfolio_role"
+                data-button-target="?role=ai-solutions"
+                aria-pressed="false"
+              >
+                <span class="role-option-number" aria-hidden="true">03</span>
+                <span data-i18n="roleAiName">AI-avusteiset digitaaliset ratkaisut</span>
+                <span class="role-option-check" aria-hidden="true">✓</span>
+              </button>
+            </div>
+            <button
+              type="button"
+              class="role-option role-option-all"
+              data-role-button="all"
+              data-button-name="portfolio_role_all"
+              data-category="portfolio_role"
+              data-button-target="?role=all"
+              aria-pressed="false"
+            >
+              <span class="role-option-number" aria-hidden="true">04</span>
+              <span data-i18n="roleAllName">Näytä koko portfolio</span>
+              <span class="role-option-check" aria-hidden="true">✓</span>
+            </button>
+          </div>
+
+          <div class="role-profiles" aria-live="off">
+            <div class="role-profile role-profile-unselected is-active" data-role-panel="unselected">
+              <p data-i18n="roleUnselectedIntro">
+                Valitse näkökulma, niin nostan esiin kolme tehtävään sopivaa työnäytettä ja keskeiset taitoni.
+              </p>
+            </div>
+
+            <article class="role-profile" data-role-panel="creative-design">
+              <div class="role-profile-copy">
+                <p class="role-profile-kicker" data-i18n="roleSelectedPerspective">Valittu näkökulma</p>
+                <h2 data-i18n="roleCreativeName">Luova digitaalinen suunnittelija</h2>
+                <p data-i18n="roleCreativeIntro">
+                  Yhdistän visuaalisen suunnittelun, tarinankerronnan ja digitaalisen toteutuksen yhtenäisiksi konsepteiksi.
+                </p>
+              </div>
+              <nav class="role-recommendations" aria-labelledby="role-creative-recommendations-title">
+                <h3 id="role-creative-recommendations-title" data-i18n="roleRecommendationsTitle">Kolme suositeltua työnäytettä</h3>
+                <ol>
+                  <li>
+                    <a href="#campaign">
+                      <strong data-i18n="roleCreativeCampaignTitle">Visuaalinen työnhakukampanja</strong>
+                      <span data-i18n="roleCreativeCampaignText">Yhtenäinen kampanjailme kokoaa CV:n, saatekirjeen ja printin samaksi tarinaksi.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#media">
+                      <strong data-i18n="roleCreativeVideoTitle">Video-CV</strong>
+                      <span data-i18n="roleCreativeVideoText">Uutislähetyksen muoto yhdistää käsikirjoituksen, visuaalisen kerronnan ja editoinnin.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#news">
+                      <strong data-i18n="roleCreativePortfolioTitle">Future Maker -portfolio</strong>
+                      <span data-i18n="roleCreativePortfolioText">Sanomalehtimäinen verkkokonsepti näyttää typografian, sisältöhierarkian ja digitaalisen toteutuksen.</span>
+                    </a>
+                  </li>
+                </ol>
+              </nav>
+              <aside class="role-skills" aria-labelledby="role-creative-skills-title">
+                <h3 id="role-creative-skills-title" data-i18n="roleSkillsTitle">Keskeiset taidot</h3>
+                <ul>
+                  <li data-i18n="skillVisualDesign">Visuaalinen suunnittelu</li>
+                  <li data-i18n="skillConceptDesign">Konseptisuunnittelu</li>
+                  <li data-i18n="skillStorytelling">Tarinankerronta</li>
+                  <li data-i18n="skillImageEditing">Kuvankäsittely</li>
+                  <li data-i18n="skillVideoEditing">Videoeditointi</li>
+                  <li data-i18n="skillTypography">Typografia</li>
+                </ul>
+              </aside>
+            </article>
+
+            <article class="role-profile" data-role-panel="digital-marketing">
+              <div class="role-profile-copy">
+                <p class="role-profile-kicker" data-i18n="roleSelectedPerspective">Valittu näkökulma</p>
+                <h2 data-i18n="roleMarketingName">Digimarkkinointi ja sisällöntuotanto</h2>
+                <p data-i18n="roleMarketingIntro">
+                  Rakennan sisältöjä ja digitaalisia kokonaisuuksia, joissa tarina, kohderyhmä ja mitattavuus tukevat samaa tavoitetta.
+                </p>
+              </div>
+              <nav class="role-recommendations" aria-labelledby="role-marketing-recommendations-title">
+                <h3 id="role-marketing-recommendations-title" data-i18n="roleRecommendationsTitle">Kolme suositeltua työnäytettä</h3>
+                <ol>
+                  <li>
+                    <a href="#campaign">
+                      <strong data-i18n="roleMarketingCampaignTitle">Työnhakukampanja kokonaisuutena</strong>
+                      <span data-i18n="roleMarketingCampaignText">Henkilöbrändi, verkkosivu, videot ja painotuotteet muodostavat yhden asiakaspolun.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#media">
+                      <strong data-i18n="roleMarketingLinkedinTitle">LinkedIn- ja sisältökonseptit</strong>
+                      <span data-i18n="roleMarketingLinkedinText">Ammatilliset sisällöt jatkavat kampanjan tarinaa kanavasta toiseen.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="privacy.html">
+                      <strong data-i18n="roleMarketingAnalyticsTitle">Portfolion analytiikka ja käyttäjäpolut</strong>
+                      <span data-i18n="roleMarketingAnalyticsText">Suostumukseen perustuva mittaus tukee sisältöjen ja kävijäpolkujen kehittämistä.</span>
+                    </a>
+                  </li>
+                </ol>
+              </nav>
+              <aside class="role-skills" aria-labelledby="role-marketing-skills-title">
+                <h3 id="role-marketing-skills-title" data-i18n="roleSkillsTitle">Keskeiset taidot</h3>
+                <ul>
+                  <li data-i18n="skillContentStrategy">Sisältöstrategia</li>
+                  <li data-i18n="skillDigitalMarketing">Digimarkkinointi</li>
+                  <li data-i18n="skillStorytelling">Tarinankerronta</li>
+                  <li data-i18n="skillCampaignPlanning">Kampanjasuunnittelu</li>
+                  <li data-i18n="skillAnalytics">Analytiikka</li>
+                  <li data-i18n="skillPersonalBranding">Henkilöbrändäys</li>
+                </ul>
+              </aside>
+            </article>
+
+            <article class="role-profile" data-role-panel="ai-solutions">
+              <div class="role-profile-copy">
+                <p class="role-profile-kicker" data-i18n="roleSelectedPerspective">Valittu näkökulma</p>
+                <h2 data-i18n="roleAiName">AI-avusteiset digitaaliset ratkaisut</h2>
+                <p data-i18n="roleAiIntro">
+                  Suunnittelen käytännönläheisiä digitaalisia ratkaisuja, joissa tekoäly, automaatio, analytiikka ja käyttöliittymä muodostavat toimivan kokonaisuuden.
+                </p>
+              </div>
+              <nav class="role-recommendations" aria-labelledby="role-ai-recommendations-title">
+                <h3 id="role-ai-recommendations-title" data-i18n="roleRecommendationsTitle">Kolme suositeltua työnäytettä</h3>
+                <ol>
+                  <li>
+                    <a href="#news">
+                      <strong data-i18n="roleAiPortfolioTitle">AI-avusteinen Future Maker -portfolio</strong>
+                      <span data-i18n="roleAiPortfolioText">Kevyt verkkototeutus yhdistää oman konseptin, käyttöliittymän ja AI-avusteisen kehitystyön.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="ai.html">
+                      <strong data-i18n="roleAiAgentTitle">Portfolion AI-agenttikerros</strong>
+                      <span data-i18n="roleAiAgentText">HTML-, JSON-LD- ja JSON-rakenne tekee sisällöstä koneellisesti ymmärrettävää.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="privacy.html">
+                      <strong data-i18n="roleAiPrivacyTitle">Analytiikka-, automaatio- ja GDPR-ratkaisut</strong>
+                      <span data-i18n="roleAiPrivacyText">Suostumusohjattu analytiikka yhdistää kevyen automaation ja yksityisyyden suojan.</span>
+                    </a>
+                  </li>
+                </ol>
+              </nav>
+              <aside class="role-skills" aria-labelledby="role-ai-skills-title">
+                <h3 id="role-ai-skills-title" data-i18n="roleSkillsTitle">Keskeiset taidot</h3>
+                <ul>
+                  <li data-i18n="skillAiDevelopment">AI-avusteinen kehitys</li>
+                  <li data-i18n="skillAutomation">Automaatio</li>
+                  <li data-i18n="skillAnalytics">Analytiikka</li>
+                  <li data-i18n="skillWebDevelopment">Verkkokehitys</li>
+                  <li data-i18n="skillStructuredData">Tiedon rakenteistaminen</li>
+                  <li data-i18n="skillUiDesign">Käyttöliittymäsuunnittelu</li>
+                </ul>
+              </aside>
+            </article>
+
+            <article class="role-profile role-profile-all" data-role-panel="all">
+              <div class="role-profile-copy">
+                <p class="role-profile-kicker" data-i18n="roleSelectedPerspective">Valittu näkökulma</p>
+                <h2 data-i18n="roleAllProfileTitle">Koko portfolio</h2>
+                <p data-i18n="roleAllIntro">
+                  Näet kaikki työnäytteet, videot, dokumentit ja tekniset ratkaisut yhtenä kokonaisuutena. Portfolio jatkuu heti tämän valitsimen jälkeen.
+                </p>
+                <a
+                  class="role-all-continue"
+                  href="#news"
+                  data-track="button_click"
+                  data-button-name="portfolio_role_continue_full"
+                  data-category="portfolio_role"
+                  data-button-target="section-news"
+                  data-i18n="roleAllContinue"
+                >Siirry koko portfolioon</a>
+              </div>
+            </article>
+          </div>
+
+          <p class="visually-hidden" data-role-announcer aria-live="polite" aria-atomic="true"></p>
+        </section>
+
         <section class="hero" id="news" aria-labelledby="hero-title">
           <div class="hero-copy">
             <p class="kicker" data-i18n="heroKicker">Etusivun pääuutinen // Special News Today</p>
-            <h1 id="hero-title" data-i18n="heroTitle">Erikoisuutisia: Jani Myllymäki teki työnhausta uutisen</h1>
+            <h2 class="hero-title" id="hero-title" data-i18n="heroTitle">Erikoisuutisia: Jani Myllymäki teki työnhausta uutisen</h2>
             <p class="subtitle" data-i18n="heroSubtitle">Luovasuunnittelija, kampanjantekijä ja oman uransa päätoimittaja</p>
-            <div class="ticker" aria-label="Pääuutinen">
+            <div class="ticker" aria-label="Pääuutinen" data-i18n-aria="tickerAria">
               <span data-i18n="ticker">Vuosi sitten perinteinen työnhaku loppui. Tilalle tuli henkilökohtainen brändikampanja.</span>
             </div>
             <p class="byline" data-i18n="heroByline">Future Maker Times | Helsinki | Tänään</p>
@@ -63,7 +443,7 @@
           </div>
 
           <aside class="hero-photo" aria-label="Jani Myllymäki">
-            <img src="assets/images/jani-profile.jpg" alt="Jani Myllymäki">
+            <img src="assets/images/jani-profile.jpg" alt="Piirretty muotokuva Jani Myllymäestä punaisessa takissa" data-i18n-alt="profileImageAlt">
             <div class="photo-caption">
               <strong data-i18n="photoLabel">Etusivun henkilö:</strong>
               <span data-i18n="photoCaption">Minä olen tarina.</span>
@@ -71,17 +451,17 @@
           </aside>
         </section>
 
-        <section class="news-strip" aria-label="Nopea kooste">
+        <section class="news-strip" aria-label="Nopea kooste" data-i18n-aria="newsStripAria">
           <p data-i18n-html="stripEditorial"><strong>Pääkirjoitus:</strong> Luovuus kasvaa. Vallankumous on totta.</p>
           <p data-i18n-html="stripObservation"><strong>Toimituksen havainto:</strong> valmiina kampanjoihin, videoihin, musiikkiin ja painomateriaaleihin.</p>
           <p><strong data-i18n="stripReader">Lukija no.</strong> <span id="visitor-count">000001</span></p>
         </section>
 
-        <section class="feature-grid" id="campaign" aria-labelledby="campaign-title">
-          <div class="feature-story">
+        <section class="feature-grid" id="campaign" aria-labelledby="campaign-title" data-roles="creative-design digital-marketing">
+          <article class="feature-story">
             <p class="section-label" data-i18n="campaignLabel">Uutisanalyysi</p>
             <h2 id="campaign-title" data-i18n="campaignTitle">Työnhaku kuin mainoskampanja</h2>
-            <p class="byline" data-i18n="campaignByline">Teksti: Future Maker -toimitus | Osasto: Brand & Culture</p>
+            <p class="byline" data-i18n="campaignByline">Teksti: Future Maker -toimitus | Osasto: Brand &amp; Culture</p>
             <p class="quote" data-i18n="campaignQuote">Kun luovuus muuttuu kampanjaksi, tehdään historiaa.</p>
             <p data-i18n="campaignBodyOne">
               Myllymäki on taitava toteuttamaan kokonaisia mainoskampanjoita videoiden käsikirjoituksesta ja kuvauksesta editointiin. Lisäksi hänellä on kyky säveltää musiikkia ja luoda asiakkaille painettuja materiaaleja, kuten esitteitä ja muuta mainosmateriaalia.
@@ -89,10 +469,10 @@
             <p data-i18n="campaignBodyTwo">
               Olipa kyseessä digitaalinen tai perinteinen media, Myllymäki tarjoaa kattavan ja korkealaatuisen ratkaisun, joka on räätälöity tarpeisiisi.
             </p>
-          </div>
+          </article>
 
-          <div class="system-panel" aria-label="Taidot">
-            <div class="panel-title" data-i18n="factsTitle">Nopeat faktat</div>
+          <aside class="system-panel" aria-labelledby="facts-title">
+            <h2 class="panel-title" id="facts-title" data-i18n="factsTitle">Nopeat faktat</h2>
             <dl>
               <div>
                 <dt>Video</dt>
@@ -115,10 +495,10 @@
                 <dd data-i18n="factTools">Photoshop, Final Cut Pro, Lightroom, Logic Pro, Canva, Widnoz AI, Cloudflare, CapCut sekä tekoäly- ja agenttityökalut</dd>
               </div>
             </dl>
-          </div>
+          </aside>
         </section>
 
-        <section class="archive" id="archive" aria-labelledby="archive-title">
+        <section class="archive" id="archive" aria-labelledby="archive-title" data-roles="creative-design digital-marketing">
           <div class="section-heading">
             <p class="section-label" data-i18n="archiveLabel">Lehtiarkisto</p>
             <h2 id="archive-title" data-i18n="archiveTitle">Asiakirjat toimituksen arkistosta</h2>
@@ -128,7 +508,7 @@
           </div>
 
           <div class="doc-grid">
-            <article class="doc-card">
+            <article class="doc-card" data-roles="creative-design digital-marketing">
               <span class="filetype" data-i18n="docCvType">Etusivu / PDF</span>
               <h3 data-i18n="docCvTitle">Ansioluettelo</h3>
               <p data-i18n="docCvText">Ansioluettelo on suunniteltu kuin vanhan sanomalehden etusivu, koska ura on uutinen.</p>
@@ -137,7 +517,7 @@
               </div>
             </article>
 
-            <article class="doc-card">
+            <article class="doc-card" data-roles="creative-design digital-marketing">
               <span class="filetype" data-i18n="docCoverType">Pääkirjoitus / PDF</span>
               <h3 data-i18n="docCoverTitle">Saatekirjeet</h3>
               <p data-i18n="docCoverText">Jokainen saatekirje toimii kuin terävä pääkirjoitus rohkeasta brändivisiosta.</p>
@@ -146,7 +526,7 @@
               </div>
             </article>
 
-            <article class="doc-card">
+            <article class="doc-card" data-roles="creative-design digital-marketing">
               <span class="filetype" data-i18n="docManuscriptType">Kulttuuri / PDF</span>
               <h3 data-i18n="docManuscriptTitle">Käsikirjoitus</h3>
               <p data-i18n="docManuscriptText">Astu luovaan uutishuoneeseen: raakaideoista rakennettu mukaansatempaava tarina.</p>
@@ -155,7 +535,7 @@
               </div>
             </article>
 
-            <article class="doc-card">
+            <article class="doc-card" data-roles="creative-design">
               <span class="filetype" data-i18n="docCardType">Ilmoitus / PDF</span>
               <h3 data-i18n="docCardTitle">Käyntikortti</h3>
               <p data-i18n="docCardText">Vuoden 1925 tunnelma, Affinity Publisher ja digitaalinen aikakapseli samassa paketissa.</p>
@@ -166,7 +546,7 @@
           </div>
         </section>
 
-        <section class="media" id="media" aria-labelledby="media-title">
+        <section class="media" id="media" aria-labelledby="media-title" data-roles="creative-design digital-marketing ai-solutions">
           <div class="section-heading">
             <p class="section-label" data-i18n="mediaLabel">Lähetysosasto</p>
             <h2 id="media-title" data-i18n="mediaTitle">Videouutiset ja ulkoiset lähteet</h2>
@@ -178,18 +558,27 @@
           <div class="video-player" id="video-cv-player" hidden>
             <div class="video-window-bar">
               <span data-i18n="videoWindowTitle">LIVE PLAYER / VIDEO CV: LUOVUUS SYDÄMESSÄ</span>
-              <button type="button" class="video-close" aria-label="Sulje videosoitin">×</button>
+              <button type="button" class="video-close" aria-label="Sulje videosoitin" data-i18n-aria="videoCloseAria">×</button>
             </div>
             <div class="video-stage">
               <iframe
                 id="video-cv-youtube"
                 class="video-embed"
-                title="Video CV: Luovuus sydämessä"
+                title="Video-CV: Luovuus sydämessä"
+                data-i18n-title="videoIframeTitle"
                 src="about:blank"
+                hidden
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
               ></iframe>
+              <div class="video-consent-placeholder" data-video-consent-placeholder>
+                <p data-i18n="videoConsentText">
+                  Tämä video on upotettu YouTubesta. Video latautuu vasta, jos hyväksyt kolmannen osapuolen sisällön tai avaat videon erikseen.
+                </p>
+                <button type="button" class="video-load-button" data-video-load data-track="button_click" data-button-name="video_cv_load_button" data-category="video" data-button-target="video-cv-youtube" data-i18n="videoLoadButton">Lataa video</button>
+              </div>
               <video
                 id="video-cv"
                 hidden
@@ -213,14 +602,15 @@
             <button
               type="button"
               class="poster-link"
-              aria-label="Avaa Video CV: Luovuus sydämessä"
+              aria-label="Avaa Video-CV: Luovuus sydämessä"
+              data-i18n-aria="videoOpenAria"
               data-track="button_click"
               data-button-name="video_cv_poster"
               data-category="video"
               data-button-target="video-cv"
               data-video-trigger
             >
-              <img src="assets/images/video-poster.jpg" alt="Video CV:n esikatselukuva" data-content-poster>
+              <img src="assets/images/video-poster.jpg" alt="Video-CV:n esikatselukuva: uutisankkuri studiolähetyksessä" data-content-poster data-i18n-alt="videoPosterAlt">
               <span class="poster-overlay" aria-hidden="true">
                 <span class="play-icon"></span>
                 <span class="poster-copy">
@@ -231,19 +621,19 @@
             </button>
 
             <div class="link-stack">
-              <button type="button" data-video-trigger data-track="button_click" data-button-name="video_cv_button" data-category="video" data-button-target="video-cv">
+              <button type="button" data-roles="creative-design digital-marketing" data-video-trigger data-track="button_click" data-button-name="video_cv_button" data-category="video" data-button-target="video-cv">
                 <strong data-i18n="videoCvTitle">Video CV: Luovuus sydämessä</strong>
                 <span data-i18n="videoCvText">Toista henkilökohtainen kampanjavideo tässä sivun ikkunassa.</span>
               </button>
-              <a href="https://www.youtube.com/watch?v=SQt0zvktlkw" data-track="button_click" data-button-name="youtube_creative_career" data-category="social" data-button-target="youtube.com">
+              <a href="https://www.youtube.com/watch?v=SQt0zvktlkw" data-roles="creative-design digital-marketing ai-solutions" data-track="button_click" data-button-name="youtube_creative_career" data-category="social" data-button-target="youtube.com">
                 <strong data-i18n="creativeCareerTitle">Luova ura -sarja</strong>
                 <span data-i18n="creativeCareerText">Alkuperäinen minisarja mainosalan kulissien takaa.</span>
               </a>
-              <a href="https://www.youtube.com/watch?v=yUSa00QPDRw" data-track="button_click" data-button-name="youtube_ship_of_ideas" data-category="social" data-button-target="youtube.com">
+              <a href="https://www.youtube.com/watch?v=yUSa00QPDRw" data-roles="creative-design" data-track="button_click" data-button-name="youtube_ship_of_ideas" data-category="social" data-button-target="youtube.com">
                 <strong data-i18n="shipTitle">Ideoiden laiva</strong>
                 <span data-i18n="shipText">Ohjattu, editoitu ja sävelletty itse alusta loppuun.</span>
               </a>
-              <a href="https://www.instagram.com/taidetta_taidetta/" data-track="button_click" data-button-name="instagram_button" data-category="social" data-button-target="instagram.com">
+              <a href="https://www.instagram.com/taidetta_taidetta/" data-roles="creative-design digital-marketing" data-track="button_click" data-button-name="instagram_button" data-category="social" data-button-target="instagram.com">
                 <strong data-i18n="instagramTitle">Kulissien takana</strong>
                 <span data-i18n="instagramText">Instagram-linkki vanhalta sivulta.</span>
               </a>
@@ -252,10 +642,12 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 data-track="button_click"
+                data-roles="digital-marketing"
                 data-button-name="linkedin_button"
                 data-category="social"
                 data-button-target="linkedin.com"
                 aria-label="Avaa Jani Myllymäen LinkedIn-profiili"
+                data-i18n-aria="linkedinAria"
               >
                 <strong>LinkedIn</strong>
                 <span data-i18n="linkedinText">Ammatillinen profiili ja yhteysverkosto.</span>
@@ -269,15 +661,25 @@
           <h2 id="contact-title" data-i18n="contactTitle">Oikeat uutiset eivät odota.</h2>
           <p data-i18n="contactText">Tehdään historiaa yhdessä.</p>
           <a class="button primary" href="mailto:janmyllymaki@gmail.com" data-track="button_click" data-button-name="email_contact" data-category="contact" data-button-target="email">janmyllymaki@gmail.com</a>
-          <p class="privacy-note" data-i18n="privacyNote">
-            Tietosuojahuomautus: Sivusto kerää vain hyväksynnällä kevyttä analytiikkadataa portfolion toimivuuden arviointiin. Kerättäviä tietoja voivat olla sivun osio, tapahtumatyyppi, laitekategoria, selain, käyttöjärjestelmä, kieli, liikenteen lähde, viipymä, klikkaukset ja yhteystyyppi. Operaattori tallennetaan vain, jos selain antaa sen turvallisesti ilman IP-osoitetta; muuten arvoksi tulee not_available. Sivusto ei kerää nimeä, sähköpostia, IP-osoitetta tai tarkkaa sijaintia analytiikkalokiin. Data tallennetaan yksityiseen Google Sheetiin, joka ei ole julkinen. Dataa käytetään vain portfolion ja työnhakumateriaalien toimivuuden arviointiin.
-          </p>
+          <div class="privacy-brief" data-roles="digital-marketing ai-solutions">
+            <div class="privacy-brief-heading">
+              <p class="section-label" data-i18n="privacyBriefLabel">Toimituksen tietosuoja</p>
+              <h3 data-i18n="privacyBriefTitle">Sinä päätät datastasi.</h3>
+            </div>
+            <p class="privacy-note" data-i18n="privacyNote">
+              Sivusto kerää vain suostumuksellasi rajattua käyttödataa portfolion kehittämiseen. Nimeä, sähköpostia, IP-osoitetta tai tarkkaa sijaintia ei tallenneta. Sivusto toimii myös ilman analytiikkaa.
+            </p>
+            <div class="privacy-actions" aria-label="Tietosuoja-asetukset" data-i18n-aria="privacyActionsAria">
+              <a href="privacy.html" class="button privacy-button privacy-button-read" data-track="button_click" data-button-name="privacy_notice_button" data-category="privacy" data-button-target="privacy-page" data-i18n="privacyNoticeButton">Tietosuojaseloste</a>
+              <button type="button" class="button privacy-button privacy-button-settings" data-open-privacy-settings data-i18n="privacySettingsButton">Asetukset</button>
+            </div>
+          </div>
         </section>
       </main>
+
     </div>
 
     <script src="assets/content-config.js"></script>
-    <script src="assets/vendor/hls.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

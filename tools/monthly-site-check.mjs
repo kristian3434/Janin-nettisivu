@@ -385,18 +385,30 @@ function recommendationForHttp(httpResult, target) {
   return `Tarkista osoite ${target} ja päivitä se tarvittaessa.`;
 }
 
-function isBotProtectedSocialUrl(urlValue) {
+function isKnownAutomationLimitedUrl(urlValue) {
   try {
     const host = new URL(urlValue).hostname.replace(/^www\./, "");
     return (
       host === "linkedin.com" ||
       host.endsWith(".linkedin.com") ||
       host === "instagram.com" ||
-      host.endsWith(".instagram.com")
+      host.endsWith(".instagram.com") ||
+      host === "youtube.com" ||
+      host.endsWith(".youtube.com") ||
+      host === "youtube-nocookie.com" ||
+      host.endsWith(".youtube-nocookie.com") ||
+      host === "youtu.be"
     );
   } catch {
     return false;
   }
+}
+
+function isKnownAutomationLimitedFailure(url, httpResult) {
+  return (
+    isKnownAutomationLimitedUrl(url) &&
+    (Boolean(httpResult.error) || [403, 429, 999].includes(httpResult.status))
+  );
 }
 
 async function checkExternalLink(url, label, area = "external-link") {
@@ -425,18 +437,15 @@ async function checkExternalLink(url, label, area = "external-link") {
     return;
   }
 
-  if (
-    isBotProtectedSocialUrl(url) &&
-    (httpResult.status === 403 || httpResult.status === 429 || httpResult.status === 999)
-  ) {
+  if (isKnownAutomationLimitedFailure(url, httpResult)) {
     warn({
       area,
       type: "external-link",
       label,
       target: url,
-      detail: `${statusDetail(httpResult)}. Palvelu todennäköisesti estää automaatiopyynnön, vaikka linkki voi toimia selaimessa.`,
+      detail: `${statusDetail(httpResult)}. Palvelu tai paikallinen verkkoympäristö todennäköisesti estää automaatiopyynnön, vaikka linkki voi toimia selaimessa.`,
       recommendation:
-        "Tarkista linkki selaimessa. Jos se toimii, tämä varoitus on hyväksyttävä sosiaalisen median bot-suojauksen vuoksi.",
+        "Tarkista linkki selaimessa. Jos se toimii, tämä varoitus on hyväksyttävä some-/YouTube-bot-suojauksen vuoksi.",
     });
     return;
   }
@@ -881,7 +890,10 @@ function checkButtons(buttons, anchors, contentConfig, ids) {
     const buttonClass = button.attrs.class || "";
     const isLanguage = "data-language" in button.attrs;
     const isVideoTrigger = "data-video-trigger" in button.attrs;
+    const isVideoLoad = "data-video-load" in button.attrs;
     const isVideoPlay = "data-video-play" in button.attrs;
+    const isPortfolioRole = "data-role-button" in button.attrs;
+    const isPrivacySettings = "data-open-privacy-settings" in button.attrs;
     const isVideoClose = buttonClass.split(/\s+/).includes("video-close");
 
     if (!hasType) {
@@ -921,6 +933,42 @@ function checkButtons(buttons, anchors, contentConfig, ids) {
       continue;
     }
 
+    if (isPortfolioRole) {
+      const role = button.attrs["data-role-button"];
+
+      if (["creative-design", "digital-marketing", "ai-solutions", "all"].includes(role)) {
+        pass({
+          area: "button",
+          type: "button",
+          label,
+          target: `portfolio-role:${role}`,
+          detail: "Roolivalitsimella on tuettu data-role-button-arvo.",
+        });
+      } else {
+        fail({
+          area: "button",
+          type: "button",
+          label,
+          target: `portfolio-role:${role}`,
+          detail: "Roolivalitsimen data-role-button-arvoa ei tunnisteta.",
+          recommendation:
+            "Käytä arvoa creative-design, digital-marketing, ai-solutions tai all.",
+        });
+      }
+      continue;
+    }
+
+    if (isPrivacySettings) {
+      pass({
+        area: "button",
+        type: "button",
+        label,
+        target: "privacy-settings",
+        detail: "Tietosuoja-asetusten avausnapilla on tunnettu toiminto.",
+      });
+      continue;
+    }
+
     if (isVideoTrigger) {
       if (ids.has("video-cv-player") && contentConfig.video?.youtubeId) {
         pass({
@@ -938,6 +986,33 @@ function checkButtons(buttons, anchors, contentConfig, ids) {
           target: "video-cv-player",
           detail: "Videon avausnapin kohde tai YouTube ID puuttuu.",
           recommendation: "Tarkista #video-cv-player ja assets/content-config.js:n video.youtubeId.",
+        });
+      }
+      continue;
+    }
+
+    if (isVideoLoad) {
+      if (
+        button.attrs["data-button-name"] === "video_cv_load_button" &&
+        ids.has("video-cv-youtube") &&
+        contentConfig.video?.youtubeId
+      ) {
+        pass({
+          area: "button",
+          type: "button",
+          label,
+          target: "video-cv-youtube",
+          detail: "Videon latausnapilla on tunnettu data-video-load-toiminto ja YouTube ID.",
+        });
+      } else {
+        fail({
+          area: "button",
+          type: "button",
+          label,
+          target: "video-cv-youtube",
+          detail: "Videon latausnapin tunniste, kohde tai YouTube ID puuttuu.",
+          recommendation:
+            "Tarkista data-button-name=\"video_cv_load_button\", #video-cv-youtube ja assets/content-config.js:n video.youtubeId.",
         });
       }
       continue;
@@ -1217,6 +1292,19 @@ async function checkYoutubeEmbed(contentConfig) {
     return;
   }
 
+  if (isKnownAutomationLimitedFailure(oembedUrl, httpResult)) {
+    warn({
+      area: "embed",
+      type: "youtube-embed",
+      label: "Video CV oEmbed",
+      target: youtubeId,
+      detail: `${statusDetail(httpResult)}. YouTube todennäköisesti estää automaatiopyynnön, vaikka video voi toimia selaimessa.`,
+      recommendation:
+        "Tarkista video selaimessa. Jos upotus toimii, tämä varoitus on hyväksyttävä YouTube-bot-suojauksen vuoksi.",
+    });
+    return;
+  }
+
   fail({
     area: "embed",
     type: "youtube-embed",
@@ -1359,6 +1447,7 @@ async function main() {
   const allProjectFiles = await listFilesRecursive(projectRoot);
   const mediaAndPdfFiles = allProjectFiles
     .filter((filePath) => !filePath.includes(`${path.sep}.git${path.sep}`))
+    .filter((filePath) => !path.basename(filePath).startsWith("._"))
     .filter((filePath) => isPdf(filePath) || isImage(filePath) || isVideo(filePath));
   const extraMediaFiles = mediaAndPdfFiles.filter(
     (filePath) => !uniqueLocalReferences.some((item) => item.filePath === filePath)

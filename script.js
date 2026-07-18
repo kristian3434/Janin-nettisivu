@@ -7,11 +7,19 @@ const videoStatus = document.querySelector("#video-status");
 const videoTriggers = document.querySelectorAll("[data-video-trigger]");
 const videoClose = document.querySelector(".video-close");
 const videoPlayButton = document.querySelector("[data-video-play]");
+const videoLoadButton = document.querySelector("[data-video-load]");
+const videoConsentPlaceholder = document.querySelector("[data-video-consent-placeholder]");
 const languageButtons = document.querySelectorAll("[data-language]");
 const textNodes = document.querySelectorAll("[data-i18n]");
 const htmlNodes = document.querySelectorAll("[data-i18n-html]");
+const altNodes = document.querySelectorAll("[data-i18n-alt]");
+const ariaNodes = document.querySelectorAll("[data-i18n-aria]");
+const titleNodes = document.querySelectorAll("[data-i18n-title]");
 const documentLinks = document.querySelectorAll("[data-document-link]");
 const posterElements = document.querySelectorAll("[data-content-poster]");
+const portfolioRoleButtons = document.querySelectorAll("[data-role-button]");
+const portfolioRolePanels = document.querySelectorAll("[data-role-panel]");
+const portfolioRoleAnnouncer = document.querySelector("[data-role-announcer]");
 
 const defaultContent = {
   documents: {
@@ -23,14 +31,14 @@ const defaultContent = {
   video: {
     poster: "assets/images/video-poster.jpg",
     youtubeId: "WtUr1wuRRBU",
-    source: "https://www.youtube.com/embed/WtUr1wuRRBU?rel=0&modestbranding=1&playsinline=1",
+    source: "https://www.youtube-nocookie.com/embed/WtUr1wuRRBU?rel=0&modestbranding=1&playsinline=1",
     sources: [],
   },
   visitorData: {
     enabled: true,
     endpoint: "https://script.google.com/macros/s/AKfycbyjES-pzC5uuWF84jx4_AHafMKoGMP55JVPF5DKuvbL6owZWj6Vowe_yib4viQWGqHbpw/exec",
     siteId: "future-maker-cloudflare",
-    consentScope: "visitor-data-minimal-private-sheet-consent-v7",
+    consentScope: "visitor-data-minimal-private-sheet-consent-v8",
     ignoreLocalPreview: true,
     requireConsent: true,
     privacyMode: "minimal",
@@ -68,7 +76,21 @@ let maxScrollDepthPercent = 0;
 let visitEndSent = false;
 let videoPlayTracked = false;
 let clickCount = 0;
+let visitorConsentReturnFocus = null;
+let currentPortfolioRole = "unselected";
 const videoProgressMarks = new Set();
+const portfolioRoles = new Set([
+  "creative-design",
+  "digital-marketing",
+  "ai-solutions",
+  "all",
+]);
+const portfolioRoleAnalyticsNames = {
+  "creative-design": "portfolio_role_creative_design",
+  "digital-marketing": "portfolio_role_digital_marketing",
+  "ai-solutions": "portfolio_role_ai_solutions",
+  all: "portfolio_role_all",
+};
 
 const translations = {
   fi: {
@@ -76,6 +98,19 @@ const translations = {
     metaDescription:
       "Jani Myllymäki - tulevaisuuden tekijä. Retrohenkinen kampanjasivusto dokumenteille, videoille ja yhteydenotolle.",
     skipLink: "Siirry sisältöön",
+    siteHeaderAria: "Sivuston ylätunniste",
+    mastheadAria: "Lehden nimi",
+    mainNavAria: "Päävalikko",
+    tickerAria: "Pääuutinen",
+    newsStripAria: "Nopea kooste",
+    videoCloseAria: "Sulje videosoitin",
+    videoOpenAria: "Avaa Video-CV: Luovuus sydämessä",
+    videoIframeTitle: "Video-CV: Luovuus sydämessä",
+    linkedinAria: "Avaa Jani Myllymäen LinkedIn-profiili",
+    privacyActionsAria: "Tietosuoja-asetukset",
+    extraHeaderAria: "Extra-sivun ylätunniste",
+    extraNavAria: "Extra-sivun valikko",
+    extraReturnAria: "Paluulinkki",
     edition: "Numero 001 / Luova työnhaku",
     tagline: "Riippumaton uutishuone yhdelle rohkealle uratarinalle",
     navNews: "Pääotsikko",
@@ -83,6 +118,137 @@ const translations = {
     navArchive: "Asiakirjat",
     navMedia: "Linkit",
     navContact: "Yhteys",
+    navExtra: "Extra! – Näin portfolio rakennettiin",
+    roleEditionLabel: "Rekrytoijan erikoisnumero",
+    roleIdentityTitle: "Monialainen digitaalinen suunnittelija",
+    roleIdentityDescription:
+      "Yhdistän visuaalisen suunnittelun, sisällöntuotannon ja AI-avusteisen toteutuksen toimiviksi digitaalisiksi kokonaisuuksiksi.",
+    roleEditionInstructions:
+      "Mitä osaamistani haluat tarkastella? Valitse tehtävää lähinnä oleva näkökulma tai avaa koko portfolio.",
+    roleUnselectedIntro:
+      "Valitse näkökulma, niin nostan esiin kolme tehtävään sopivaa työnäytettä ja keskeiset taitoni.",
+    roleSelectedPerspective: "Valittu näkökulma",
+    roleCreativeName: "Luova digitaalinen suunnittelija",
+    roleMarketingName: "Digimarkkinointi ja sisällöntuotanto",
+    roleAiName: "AI-avusteiset digitaaliset ratkaisut",
+    roleAllName: "Näytä koko portfolio",
+    roleCreativeIntro:
+      "Yhdistän visuaalisen suunnittelun, tarinankerronnan ja digitaalisen toteutuksen yhtenäisiksi konsepteiksi.",
+    roleMarketingIntro:
+      "Rakennan sisältöjä ja digitaalisia kokonaisuuksia, joissa tarina, kohderyhmä ja mitattavuus tukevat samaa tavoitetta.",
+    roleAiIntro:
+      "Suunnittelen käytännönläheisiä digitaalisia ratkaisuja, joissa tekoäly, automaatio, analytiikka ja käyttöliittymä muodostavat toimivan kokonaisuuden.",
+    roleAllProfileTitle: "Koko portfolio",
+    roleAllIntro:
+      "Näet kaikki työnäytteet, videot, dokumentit ja tekniset ratkaisut yhtenä kokonaisuutena. Portfolio jatkuu heti tämän valitsimen jälkeen.",
+    roleAllContinue: "Siirry koko portfolioon",
+    roleRecommendationsTitle: "Kolme suositeltua työnäytettä",
+    roleSkillsTitle: "Keskeiset taidot",
+    roleCreativeCampaignTitle: "Visuaalinen työnhakukampanja",
+    roleCreativeCampaignText:
+      "Yhtenäinen kampanjailme kokoaa CV:n, saatekirjeen ja printin samaksi tarinaksi.",
+    roleCreativeVideoTitle: "Video-CV",
+    roleCreativeVideoText:
+      "Uutislähetyksen muoto yhdistää käsikirjoituksen, visuaalisen kerronnan ja editoinnin.",
+    roleCreativePortfolioTitle: "Future Maker -portfolio",
+    roleCreativePortfolioText:
+      "Sanomalehtimäinen verkkokonsepti näyttää typografian, sisältöhierarkian ja digitaalisen toteutuksen.",
+    roleMarketingCampaignTitle: "Työnhakukampanja kokonaisuutena",
+    roleMarketingCampaignText:
+      "Henkilöbrändi, verkkosivu, videot ja painotuotteet muodostavat yhden asiakaspolun.",
+    roleMarketingLinkedinTitle: "LinkedIn- ja sisältökonseptit",
+    roleMarketingLinkedinText:
+      "Ammatilliset sisällöt jatkavat kampanjan tarinaa kanavasta toiseen.",
+    roleMarketingAnalyticsTitle: "Portfolion analytiikka ja käyttäjäpolut",
+    roleMarketingAnalyticsText:
+      "Suostumukseen perustuva mittaus tukee sisältöjen ja kävijäpolkujen kehittämistä.",
+    roleAiPortfolioTitle: "AI-avusteinen Future Maker -portfolio",
+    roleAiPortfolioText:
+      "Kevyt verkkototeutus yhdistää oman konseptin, käyttöliittymän ja AI-avusteisen kehitystyön.",
+    roleAiAgentTitle: "Portfolion AI-agenttikerros",
+    roleAiAgentText:
+      "HTML-, JSON-LD- ja JSON-rakenne tekee sisällöstä koneellisesti ymmärrettävää.",
+    roleAiPrivacyTitle: "Analytiikka-, automaatio- ja GDPR-ratkaisut",
+    roleAiPrivacyText:
+      "Suostumusohjattu analytiikka yhdistää kevyen automaation ja yksityisyyden suojan.",
+    roleViewUpdated:
+      "Näkymä päivitetty: {role}. Kolme suositeltua työnäytettä ja kuusi keskeistä taitoa näytetään.",
+    roleViewUpdatedAll:
+      "Koko portfolio valittu. Alkuperäinen portfolio alkaa roolivalitsimen jälkeen.",
+    roleViewUpdatedUnselected:
+      "Roolinäkymää ei ole vielä valittu. Koko portfolio on käytettävissä valitsimen alapuolella.",
+    skillVisualDesign: "Visuaalinen suunnittelu",
+    skillConceptDesign: "Konseptisuunnittelu",
+    skillStorytelling: "Tarinankerronta",
+    skillImageEditing: "Kuvankäsittely",
+    skillVideoEditing: "Videoeditointi",
+    skillTypography: "Typografia",
+    skillContentStrategy: "Sisältöstrategia",
+    skillDigitalMarketing: "Digimarkkinointi",
+    skillPersonalBranding: "Henkilöbrändäys",
+    skillCampaignPlanning: "Kampanjasuunnittelu",
+    skillAnalytics: "Analytiikka",
+    skillAiDevelopment: "AI-avusteinen kehitys",
+    skillAutomation: "Automaatio",
+    skillWebDevelopment: "Verkkokehitys",
+    skillStructuredData: "Tiedon rakenteistaminen",
+    skillUiDesign: "Käyttöliittymäsuunnittelu",
+    extraPageTitle: "Extra! – Näin portfolio rakennettiin | Future Maker 2000",
+    extraMetaDescription:
+      "Extra-sivu kertoo lyhyesti, millä työkaluilla Jani Myllymäen portfolio on rakennettu.",
+    extraEdition: "Numero 001B / Tuotannon lisänumero",
+    extraTagline: "Työkalut, jäljet ja idean rakentuminen",
+    extraCurrent: "Extra!",
+    extraKicker: "Extra! // Toimituksen työpöydältä",
+    extraTitle: "Extra! – Näin portfolio rakennettiin",
+    extraIngress:
+      "Tämä portfolio on rakennettu useilla visuaalisen suunnittelun, videotuotannon, tekoälyn, editoinnin ja julkaisun työkaluilla. Tämä sivu avaa lyhyesti, millä eri osat on toteutettu.",
+    extraBackTop: "Takaisin pääsivulle",
+    extraLedgerLabel: "Tuotantoloki",
+    extraLedgerTitle: "Kahdeksan nostoa työkalujäljestä",
+    extraCvType: "01 / CV",
+    extraCvTitle: "CV",
+    extraCvTools: "<strong>Työkalut:</strong> <span>Canva</span>",
+    extraCvShows:
+      "<strong>Mitä tämä näyttää:</strong> Visuaalinen taitto, konseptointi ja sanomalehtimäinen työnhaku.",
+    extraCoverType: "02 / Saate",
+    extraCoverTitle: "Saatekirje",
+    extraCoverTools: "<strong>Työkalut:</strong> <span>Canva</span>",
+    extraCoverShows:
+      "<strong>Mitä tämä näyttää:</strong> Kirjoittaminen, argumentointi ja visuaalinen viimeistely.",
+    extraShipType: "03 / Video",
+    extraShipTitle: "Ideoiden laiva",
+    extraShipTools: "<strong>Työkalut:</strong> <span>Final Cut Pro + Logic Pro</span>",
+    extraShipShows:
+      "<strong>Mitä tämä näyttää:</strong> Videoleikkaus, Logic Pro -musiikin sävellys ja tarinallinen editointi.",
+    extraVideoCvType: "04 / Video-CV",
+    extraVideoCvTitle: "Video-CV",
+    extraVideoCvTools: "<strong>Työkalut:</strong> <span>Widnoz + CapCut</span>",
+    extraVideoCvShows:
+      "<strong>Mitä tämä näyttää:</strong> AI-videotuotanto, editointi ja uutiskonseptin rakentaminen.",
+    extraSeriesType: "05 / Sarja",
+    extraSeriesTitle: "Luova ura -sarja",
+    extraSeriesTools: "<strong>Työkalut:</strong> <span>HeyGen + CapCut</span>",
+    extraSeriesShows:
+      "<strong>Mitä tämä näyttää:</strong> AI-avatarin hyödyntäminen, videosarjan rakentaminen ja viimeistely.",
+    extraInstagramType: "06 / Some",
+    extraInstagramTitle: "Instagram",
+    extraInstagramTools: "<strong>Työkalut:</strong> <span>Photoshop + CapCut</span>",
+    extraInstagramShows:
+      "<strong>Mitä tämä näyttää:</strong> Valokuvat, lyhytvideot, visuaalinen tyyli ja sisällöntuotanto.",
+    extraBusinessCardType: "07 / Printti",
+    extraBusinessCardTitle: "Käyntikortti",
+    extraBusinessCardTools:
+      "<strong>Työkalut:</strong> <span>Nano Banana + Affinity Publisher</span>",
+    extraBusinessCardShows:
+      "<strong>Mitä tämä näyttää:</strong> Generatiivinen kuva, printtisuunnittelu, QR-ajattelu sekä paperisen maailman ja digitaalisen jatkumon yhdistäminen.",
+    extraLinkedinType: "08 / Verkosto",
+    extraLinkedinTitle: "LinkedIn",
+    extraLinkedinTools: "<strong>Työkalut:</strong> <span>AI + vibe coding</span>",
+    extraLinkedinShows:
+      "<strong>Mitä tämä näyttää:</strong> Ajattelun dokumentointi, työnhaun rakentaminen ja AI-avusteinen tekeminen.",
+    extraFooterNote: "Lisänumero päättyy tähän. Varsinainen etusivu jatkaa kampanjaa.",
+    extraBackBottom: "Palaa pääsivulle",
     heroKicker: "Etusivun pääuutinen // Special News Today",
     heroTitle: "Erikoisuutisia: Jani Myllymäki teki työnhausta uutisen",
     heroSubtitle: "Luovasuunnittelija, kampanjantekijä ja oman uransa päätoimittaja",
@@ -94,6 +260,7 @@ const translations = {
     heroArchive: "Avaa arkisto",
     photoLabel: "Etusivun henkilö:",
     photoCaption: "Minä olen tarina.",
+    profileImageAlt: "Piirretty muotokuva Jani Myllymäestä punaisessa takissa",
     stripEditorial: "<strong>Pääkirjoitus:</strong> Luovuus kasvaa. Vallankumous on totta.",
     stripObservation:
       "<strong>Toimituksen havainto:</strong> valmiina kampanjoihin, videoihin, musiikkiin ja painomateriaaleihin.",
@@ -116,7 +283,7 @@ const translations = {
     factBrand: "Strategia, visuaalisuus, tarkoitus",
     factToolsLabel: "Työkalut",
     factTools:
-      "Photoshop, Final Cut Pro, Lightroom, Logic Pro, Canva, Widnoz AI, Cloudflare, CapCut sekä tekoäly- ja agenttityökalut",
+      "Photoshop, Final Cut Pro, Lightroom, Logic Pro, Canva, Widnoz, Cloudflare, CapCut sekä tekoäly- ja agenttityökalut",
     archiveLabel: "Lehtiarkisto",
     archiveTitle: "Asiakirjat toimituksen arkistosta",
     archiveIntro:
@@ -145,6 +312,7 @@ const translations = {
     videoReady: "Valmis toistamaan Video CV:n tässä sivun omassa ikkunassa.",
     videoPlayButton: "Toista Video CV",
     posterTitle: "Luovuus sydämessä",
+    videoPosterAlt: "Video-CV:n esikatselukuva: uutisankkuri studiolähetyksessä",
     videoCvTitle: "Video CV: Luovuus sydämessä",
     videoCvText: "Toista henkilökohtainen kampanjavideo tässä sivun ikkunassa.",
     creativeCareerTitle: "Luova ura -sarja",
@@ -157,26 +325,54 @@ const translations = {
     contactLabel: "Toimitukseen yhteys",
     contactTitle: "Oikeat uutiset eivät odota.",
     contactText: "Tehdään historiaa yhdessä.",
+    privacyBriefLabel: "Toimituksen tietosuoja",
+    privacyBriefTitle: "Sinä päätät datastasi.",
+    privacyNoticeButton: "Tietosuojaseloste",
+    privacySettingsButton: "Asetukset",
     videoLoaded: "Video CV on ladattu sivun omaan soittimeen.",
     videoTryingNext: "Videolähde vaihtui automaattisesti varalähteeseen...",
     videoLoadError: "Videolähteen lataus epäonnistui. Päivitä esikatselu ja yritä uudelleen.",
     videoUnsupported: "Tämä selain ei tue tämän videolähteen toistoa suoraan sivulla.",
+    videoNeedsConsent:
+      "YouTube-video ei ole vielä latautunut. Voit hyväksyä kolmannen osapuolen sisällön tai ladata videon erikseen painikkeesta.",
     videoPlaying: "Toistetaan Video CV:tä tässä sivun omassa ikkunassa.",
     videoNeedsPlay: "Video on valmiina. Paina soittimen play-painiketta käynnistääksesi toiston.",
     videoLoading: "Ladataan Video CV:tä tähän sivun omaan ikkunaan...",
     videoStopped: "Video pysäytetty.",
+    videoConsentText:
+      "Tämä video on upotettu YouTubesta. Video latautuu vasta, jos hyväksyt kolmannen osapuolen sisällön tai avaat videon erikseen.",
+    videoLoadButton: "Lataa video",
     privacyNote:
-      "Tietosuojahuomautus: Sivusto kerää vain hyväksynnällä kevyttä analytiikkadataa portfolion toimivuuden arviointiin. Kerättäviä tietoja voivat olla sivun osio, tapahtumatyyppi, laitekategoria, selain, käyttöjärjestelmä, kieli, liikenteen lähde, viipymä, klikkaukset ja yhteystyyppi. Operaattori tallennetaan vain, jos selain antaa sen turvallisesti ilman IP-osoitetta; muuten arvoksi tulee not_available. Sivusto ei kerää nimeä, sähköpostia, IP-osoitetta tai tarkkaa sijaintia analytiikkalokiin. Data tallennetaan yksityiseen Google Sheetiin, joka ei ole julkinen. Dataa käytetään vain portfolion ja työnhakumateriaalien toimivuuden arviointiin.",
+      "Sivusto kerää vain suostumuksellasi rajattua käyttödataa portfolion kehittämiseen. Nimeä, sähköpostia, IP-osoitetta tai tarkkaa sijaintia ei tallenneta. Sivusto toimii myös ilman analytiikkaa.",
+    visitorConsentTitle: "Evästeet ja kolmannen osapuolen sisältö",
     visitorConsentText:
-      "GDPR-ilmoitus: Sivusto voi lähettää Janin yksityiseen Google-taulukkoon kevyen analytiikkamerkinnän, kuten sivun osion, tapahtumatyypin, laitetyypin, selaimen, käyttöjärjestelmän, kielen, liikenteen lähteen, viipymän, yhteystyypin ja klikkaukset. Nimeä, sähköpostia, IP-osoitetta, kaupunkia tai tarkkaa sijaintia ei tallenneta. Operaattori tallennetaan vain, jos selain antaa sen turvallisesti ilman IP-osoitetta; muuten arvoksi tulee not_available. Hyväksytkö kevyen analytiikan?",
+      "Sivusto voi hyväksynnällä kerätä rajattua kävijädataa sivuston kehittämistä varten, kuten sivun osion, tapahtumatyypin, laitetyypin, selaimen, käyttöjärjestelmän, kielen, liikenteen lähteen, viipymän ja klikkaukset. Nimeä, sähköpostia, IP-osoitetta, kaupunkia tai tarkkaa sijaintia ei tallenneta. Voit hyväksyä analytiikan, sallia vain välttämättömät toiminnot tai hylätä valinnaiset evästeet. YouTube-video latautuu vasta hyväksynnän jälkeen tai jos lataat videon erikseen painikkeesta.",
     visitorConsentAccept: "Hyväksy",
-    visitorConsentDecline: "Kiellä",
+    visitorConsentNecessary: "Salli välttämättömät evästeet",
+    visitorConsentDecline: "Hylkää",
+    visitorConsentPrivacy: "Lue tietosuojaseloste",
+    visitorConsentKicker: "Toimituksen tiedote // Tietosuoja",
+    visitorConsentStatus: "Valinta tarvitaan",
+    visitorConsentFootnote: "Sivusto toimii myös ilman analytiikkaa.",
   },
   en: {
     pageTitle: "Future Maker 2000 | Jani Myllymäki",
     metaDescription:
       "Jani Myllymäki - future maker. A retro campaign site for documents, videos and contact.",
     skipLink: "Skip to content",
+    siteHeaderAria: "Site header",
+    mastheadAria: "Newspaper name",
+    mainNavAria: "Main navigation",
+    tickerAria: "Main story",
+    newsStripAria: "Quick summary",
+    videoCloseAria: "Close video player",
+    videoOpenAria: "Open Video CV: Creativity at Heart",
+    videoIframeTitle: "Video CV: Creativity at Heart",
+    linkedinAria: "Open Jani Myllymäki's LinkedIn profile",
+    privacyActionsAria: "Privacy settings",
+    extraHeaderAria: "Extra page header",
+    extraNavAria: "Extra page navigation",
+    extraReturnAria: "Return link",
     edition: "Issue 001 / Creative job search",
     tagline: "An independent newsroom for one bold career story",
     navNews: "Headline",
@@ -184,6 +380,137 @@ const translations = {
     navArchive: "Documents",
     navMedia: "Links",
     navContact: "Contact",
+    navExtra: "Extra! – How this portfolio was built",
+    roleEditionLabel: "Recruiter special edition",
+    roleIdentityTitle: "Multidisciplinary Digital Designer",
+    roleIdentityDescription:
+      "I combine visual design, content production and AI-assisted implementation into coherent digital solutions.",
+    roleEditionInstructions:
+      "Which part of my expertise would you like to explore? Choose the perspective closest to the role or open the full portfolio.",
+    roleUnselectedIntro:
+      "Choose a perspective to see three relevant work samples and the key skills connected to the role.",
+    roleSelectedPerspective: "Selected perspective",
+    roleCreativeName: "Creative Digital Designer",
+    roleMarketingName: "Digital Marketing and Content",
+    roleAiName: "AI-Assisted Digital Solutions",
+    roleAllName: "View Full Portfolio",
+    roleCreativeIntro:
+      "I combine visual design, storytelling and digital execution into coherent concepts.",
+    roleMarketingIntro:
+      "I build content and digital experiences in which story, audience and measurability support the same goal.",
+    roleAiIntro:
+      "I design practical digital solutions in which AI, automation, analytics and the interface form a working whole.",
+    roleAllProfileTitle: "Full portfolio",
+    roleAllIntro:
+      "Explore all work samples, videos, documents and technical solutions as one complete portfolio. The full portfolio continues directly below this selector.",
+    roleAllContinue: "Continue to the full portfolio",
+    roleRecommendationsTitle: "Three recommended work samples",
+    roleSkillsTitle: "Key skills",
+    roleCreativeCampaignTitle: "Visual job-search campaign",
+    roleCreativeCampaignText:
+      "A consistent campaign identity brings the CV, cover letter and print materials into one story.",
+    roleCreativeVideoTitle: "Video CV",
+    roleCreativeVideoText:
+      "A news-broadcast format combines scripting, visual storytelling and editing.",
+    roleCreativePortfolioTitle: "Future Maker portfolio",
+    roleCreativePortfolioText:
+      "A newspaper-style web concept demonstrates typography, content hierarchy and digital execution.",
+    roleMarketingCampaignTitle: "Job-search campaign as a whole",
+    roleMarketingCampaignText:
+      "The personal brand, website, videos and print materials form a single audience journey.",
+    roleMarketingLinkedinTitle: "LinkedIn and content concepts",
+    roleMarketingLinkedinText:
+      "Professional content carries the campaign story from one channel to the next.",
+    roleMarketingAnalyticsTitle: "Portfolio analytics and user journeys",
+    roleMarketingAnalyticsText:
+      "Consent-based measurement supports the development of content and visitor journeys.",
+    roleAiPortfolioTitle: "AI-assisted Future Maker portfolio",
+    roleAiPortfolioText:
+      "A lightweight website combines my own concept, interface design and AI-assisted development.",
+    roleAiAgentTitle: "Portfolio AI-agent layer",
+    roleAiAgentText:
+      "HTML, JSON-LD and JSON structures make the content machine-readable.",
+    roleAiPrivacyTitle: "Analytics, automation and GDPR solutions",
+    roleAiPrivacyText:
+      "Consent-controlled analytics combine lightweight automation with privacy safeguards.",
+    roleViewUpdated:
+      "View updated: {role}. Three recommended work samples and six key skills are shown.",
+    roleViewUpdatedAll:
+      "Full portfolio selected. The original portfolio begins after the role selector.",
+    roleViewUpdatedUnselected:
+      "No role perspective has been selected. The full portfolio remains available below the selector.",
+    skillVisualDesign: "Visual design",
+    skillConceptDesign: "Concept design",
+    skillStorytelling: "Storytelling",
+    skillImageEditing: "Image editing",
+    skillVideoEditing: "Video editing",
+    skillTypography: "Typography",
+    skillContentStrategy: "Content strategy",
+    skillDigitalMarketing: "Digital marketing",
+    skillPersonalBranding: "Personal branding",
+    skillCampaignPlanning: "Campaign planning",
+    skillAnalytics: "Analytics",
+    skillAiDevelopment: "AI-assisted development",
+    skillAutomation: "Automation",
+    skillWebDevelopment: "Web development",
+    skillStructuredData: "Structuring information",
+    skillUiDesign: "Interface design",
+    extraPageTitle: "Extra! – How this portfolio was built | Future Maker 2000",
+    extraMetaDescription:
+      "An Extra page explaining which tools were used to build Jani Myllymäki's portfolio.",
+    extraEdition: "Issue 001B / Production extra",
+    extraTagline: "Tools, traces and how the idea came together",
+    extraCurrent: "Extra!",
+    extraKicker: "Extra! // From the production desk",
+    extraTitle: "Extra! – How this portfolio was built",
+    extraIngress:
+      "This portfolio was built with tools for visual design, video production, AI, editing and publishing. This page briefly opens up how the different parts were made.",
+    extraBackTop: "Back to main page",
+    extraLedgerLabel: "Production log",
+    extraLedgerTitle: "Eight notes on the tool trail",
+    extraCvType: "01 / CV",
+    extraCvTitle: "CV",
+    extraCvTools: "<strong>Tools:</strong> <span>Canva</span>",
+    extraCvShows:
+      "<strong>What this shows:</strong> Visual layout, concepting and a newspaper-style job search.",
+    extraCoverType: "02 / Letter",
+    extraCoverTitle: "Cover letter",
+    extraCoverTools: "<strong>Tools:</strong> <span>Canva</span>",
+    extraCoverShows:
+      "<strong>What this shows:</strong> Writing, argumentation and visual finishing.",
+    extraShipType: "03 / Video",
+    extraShipTitle: "Ship of Ideas",
+    extraShipTools: "<strong>Tools:</strong> <span>Final Cut Pro + Logic Pro</span>",
+    extraShipShows:
+      "<strong>What this shows:</strong> Video editing, Logic Pro music composition and story-led editing.",
+    extraVideoCvType: "04 / Video CV",
+    extraVideoCvTitle: "Video CV",
+    extraVideoCvTools: "<strong>Tools:</strong> <span>Widnoz + CapCut</span>",
+    extraVideoCvShows:
+      "<strong>What this shows:</strong> AI video production, editing and building a news concept.",
+    extraSeriesType: "05 / Series",
+    extraSeriesTitle: "Creative Career series",
+    extraSeriesTools: "<strong>Tools:</strong> <span>HeyGen + CapCut</span>",
+    extraSeriesShows:
+      "<strong>What this shows:</strong> Using an AI avatar, building a video series and finishing it.",
+    extraInstagramType: "06 / Social",
+    extraInstagramTitle: "Instagram",
+    extraInstagramTools: "<strong>Tools:</strong> <span>Photoshop + CapCut</span>",
+    extraInstagramShows:
+      "<strong>What this shows:</strong> Photography, short videos, visual style and content creation.",
+    extraBusinessCardType: "07 / Print",
+    extraBusinessCardTitle: "Business card",
+    extraBusinessCardTools:
+      "<strong>Tools:</strong> <span>Nano Banana + Affinity Publisher</span>",
+    extraBusinessCardShows:
+      "<strong>What this shows:</strong> Generative image work, print design, QR thinking, and connecting the paper world with a digital continuation.",
+    extraLinkedinType: "08 / Network",
+    extraLinkedinTitle: "LinkedIn",
+    extraLinkedinTools: "<strong>Tools:</strong> <span>AI + vibe coding</span>",
+    extraLinkedinShows:
+      "<strong>What this shows:</strong> Documenting thinking, building a job search and AI-assisted making.",
+    extraFooterNote: "The extra issue ends here. The main front page continues the campaign.",
+    extraBackBottom: "Return to main page",
     heroKicker: "Front-page headline // Special News Today",
     heroTitle: "Breaking news: Jani Myllymäki turned a job search into a story",
     heroSubtitle: "Creative planner, campaign maker and editor-in-chief of his own career",
@@ -195,6 +522,7 @@ const translations = {
     heroArchive: "Open archive",
     photoLabel: "Front-page person:",
     photoCaption: "I am the story.",
+    profileImageAlt: "Illustrated portrait of Jani Myllymäki wearing a red jacket",
     stripEditorial: "<strong>Editorial:</strong> Creativity is growing. The revolution is real.",
     stripObservation:
       "<strong>Newsroom note:</strong> ready for campaigns, video, music and printed materials.",
@@ -217,7 +545,7 @@ const translations = {
     factBrand: "Strategy, visual identity, purpose",
     factToolsLabel: "Tools",
     factTools:
-      "Photoshop, Final Cut Pro, Lightroom, Logic Pro, Canva, Widnoz AI, Cloudflare, CapCut plus AI and agent tools",
+      "Photoshop, Final Cut Pro, Lightroom, Logic Pro, Canva, Widnoz, Cloudflare, CapCut plus AI and agent tools",
     archiveLabel: "News archive",
     archiveTitle: "Documents from the newsroom archive",
     archiveIntro:
@@ -246,6 +574,7 @@ const translations = {
     videoReady: "Ready to play the Video CV in this page's own window.",
     videoPlayButton: "Play Video CV",
     posterTitle: "Creativity at Heart",
+    videoPosterAlt: "Video CV preview: a news anchor in a studio broadcast",
     videoCvTitle: "Video CV: Creativity at Heart",
     videoCvText: "Play the personal campaign video in this page window.",
     creativeCareerTitle: "Creative Career series",
@@ -258,20 +587,35 @@ const translations = {
     contactLabel: "Contact the newsroom",
     contactTitle: "Real news does not wait.",
     contactText: "Let's make history together.",
+    privacyBriefLabel: "Newsroom privacy",
+    privacyBriefTitle: "You decide about your data.",
+    privacyNoticeButton: "Privacy notice",
+    privacySettingsButton: "Settings",
     videoLoaded: "The Video CV has loaded in the page's own player.",
     videoTryingNext: "The video source switched automatically to a backup source...",
     videoLoadError: "The video source failed to load. Refresh the preview and try again.",
     videoUnsupported: "This browser does not support direct playback of this video source.",
+    videoNeedsConsent:
+      "The YouTube video has not loaded yet. You can accept third-party content or load the video separately with the button.",
     videoPlaying: "Playing the Video CV in this page's own window.",
     videoNeedsPlay: "The video is ready. Press the player's play button to start playback.",
     videoLoading: "Loading the Video CV into this page's own window...",
     videoStopped: "Video stopped.",
+    videoConsentText:
+      "This video is embedded from YouTube. It loads only after you accept third-party content or open the video separately.",
+    videoLoadButton: "Load video",
     privacyNote:
-      "Privacy note: With consent, this site collects lightweight analytics data to evaluate how the portfolio works. The data may include page section, event type, device category, browser, operating system, language, traffic source, time spent, connection type and clicks. Network operator is stored only if the browser provides it safely without an IP address; otherwise the value is not_available. The site does not collect names, email addresses, IP addresses or precise location in the analytics log. Data is stored in a private Google Sheet that is not public. The data is used only to evaluate the portfolio and job-search materials.",
+      "With your consent, this site collects limited usage data to improve the portfolio. Names, email addresses, IP addresses and precise location are not stored. The site also works without analytics.",
+    visitorConsentTitle: "Cookies and third-party content",
     visitorConsentText:
-      "GDPR notice: This site can send a lightweight analytics entry to Jani's private Google Sheet, such as page section, event type, device category, browser, operating system, language, traffic source, duration, connection type and clicks. Name, email, IP address, city and precise location are not stored. Network operator is stored only if the browser provides it safely without an IP address; otherwise the value is not_available. Do you accept lightweight analytics?",
+      "With your consent, this site can collect limited visitor data to improve the site, such as page section, event type, device type, browser, operating system, language, traffic source, duration and clicks. Name, email, IP address, city or precise location are not stored. You can accept analytics, allow only necessary functions or reject optional cookies. The YouTube video loads only after consent or if you load the video separately with the button.",
     visitorConsentAccept: "Accept",
-    visitorConsentDecline: "Deny",
+    visitorConsentNecessary: "Allow necessary cookies",
+    visitorConsentDecline: "Decline",
+    visitorConsentPrivacy: "Read privacy notice",
+    visitorConsentKicker: "Newsroom notice // Privacy",
+    visitorConsentStatus: "Choice needed",
+    visitorConsentFootnote: "The site also works without analytics.",
   },
 };
 
@@ -296,28 +640,59 @@ function translate(key) {
 }
 
 function applyLanguage(language) {
-  currentLanguage = translations[language] ? language : "fi";
-  document.documentElement.lang = currentLanguage;
-  document.title = translate("pageTitle");
+  const staticContent = document.body && document.body.dataset.staticContent === "true";
+  const requestedLanguage = translations[language] ? language : "fi";
+  currentLanguage =
+    staticContent && translations[document.documentElement.lang]
+      ? document.documentElement.lang
+      : requestedLanguage;
 
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription) {
-    metaDescription.setAttribute("content", translate("metaDescription"));
+  if (!staticContent) {
+    document.documentElement.lang = currentLanguage;
+    const titleKey = document.body.dataset.pageTitleKey || "pageTitle";
+    document.title = translate(titleKey);
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      const descriptionKey = document.body.dataset.pageDescriptionKey || "metaDescription";
+      metaDescription.setAttribute("content", translate(descriptionKey));
+    }
+
+    textNodes.forEach((node) => {
+      const key = node.dataset.i18n;
+      if (key && translate(key)) {
+        node.textContent = translate(key);
+      }
+    });
+
+    htmlNodes.forEach((node) => {
+      const key = node.dataset.i18nHtml;
+      if (key && translate(key)) {
+        node.innerHTML = translate(key);
+      }
+    });
+
+    altNodes.forEach((node) => {
+      const key = node.dataset.i18nAlt;
+      if (key && translate(key)) {
+        node.setAttribute("alt", translate(key));
+      }
+    });
+
+    ariaNodes.forEach((node) => {
+      const key = node.dataset.i18nAria;
+      if (key && translate(key)) {
+        node.setAttribute("aria-label", translate(key));
+      }
+    });
+
+    titleNodes.forEach((node) => {
+      const key = node.dataset.i18nTitle;
+      if (key && translate(key)) {
+        node.setAttribute("title", translate(key));
+      }
+    });
   }
-
-  textNodes.forEach((node) => {
-    const key = node.dataset.i18n;
-    if (key && translate(key)) {
-      node.textContent = translate(key);
-    }
-  });
-
-  htmlNodes.forEach((node) => {
-    const key = node.dataset.i18nHtml;
-    if (key && translate(key)) {
-      node.innerHTML = translate(key);
-    }
-  });
 
   languageButtons.forEach((button) => {
     const active = button.dataset.language === currentLanguage;
@@ -325,12 +700,136 @@ function applyLanguage(language) {
     button.setAttribute("aria-pressed", String(active));
   });
 
-  saveLanguage(currentLanguage);
+  if (!staticContent) {
+    saveLanguage(currentLanguage);
+  }
   updateClock();
   updateVisitorConsentBanner();
 }
 
+function getPortfolioRoleFromLocation() {
+  const requestedRole = new URLSearchParams(window.location.search).get("role");
+  return portfolioRoles.has(requestedRole) ? requestedRole : "unselected";
+}
+
+function getPortfolioRoleName(role) {
+  const roleNameKeys = {
+    "creative-design": "roleCreativeName",
+    "digital-marketing": "roleMarketingName",
+    "ai-solutions": "roleAiName",
+    all: "roleAllProfileTitle",
+  };
+
+  return translate(roleNameKeys[role] || roleNameKeys.all);
+}
+
+function announcePortfolioRole(role) {
+  if (!portfolioRoleAnnouncer) {
+    return;
+  }
+
+  let message = translate("roleViewUpdatedUnselected");
+
+  if (role === "all") {
+    message = translate("roleViewUpdatedAll");
+  } else if (portfolioRoles.has(role)) {
+    message = translate("roleViewUpdated").replace("{role}", getPortfolioRoleName(role));
+  }
+
+  portfolioRoleAnnouncer.textContent = "";
+  window.requestAnimationFrame(() => {
+    portfolioRoleAnnouncer.textContent = message;
+  });
+}
+
+function trackPortfolioRoleSelection(role) {
+  if (!portfolioRoles.has(role)) {
+    return;
+  }
+
+  sendVisitorData(
+    {
+      eventName: "portfolio_role_selected",
+      eventCategory: "portfolio_role",
+      buttonName: portfolioRoleAnalyticsNames[role],
+      buttonTarget: `?role=${role}`,
+    },
+    { beacon: true }
+  );
+}
+
+function updatePortfolioRoleUrl(role) {
+  const nextUrl = new URL(window.location.href);
+
+  if (role === "unselected") {
+    nextUrl.searchParams.delete("role");
+  } else {
+    nextUrl.searchParams.set("role", role);
+  }
+
+  if (nextUrl.href === window.location.href) {
+    return;
+  }
+
+  window.history.pushState({ portfolioRole: role }, "", nextUrl);
+}
+
+function applyPortfolioRole(role, options = {}) {
+  const nextRole = portfolioRoles.has(role) ? role : "unselected";
+  currentPortfolioRole = nextRole;
+  document.documentElement.dataset.portfolioRole = nextRole;
+
+  portfolioRoleButtons.forEach((button) => {
+    const active = button.dataset.roleButton === nextRole;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  portfolioRolePanels.forEach((panel) => {
+    const active = panel.dataset.rolePanel === nextRole;
+    panel.classList.toggle("is-active", active);
+    panel.hidden = !active;
+  });
+
+  if (options.updateHistory) {
+    updatePortfolioRoleUrl(nextRole);
+  }
+
+  if (options.track) {
+    trackPortfolioRoleSelection(nextRole);
+  }
+
+  if (options.announce) {
+    announcePortfolioRole(nextRole);
+  }
+
+  document.documentElement.classList.remove("role-pending");
+}
+
+function initPortfolioRoleView() {
+  if (!portfolioRoleButtons.length || !portfolioRolePanels.length) {
+    document.documentElement.classList.remove("role-pending");
+    return;
+  }
+
+  const locationParams = new URLSearchParams(window.location.search);
+  const requestedRole = locationParams.get("role");
+  const initialRole = getPortfolioRoleFromLocation();
+
+  if (locationParams.has("role") && !portfolioRoles.has(requestedRole)) {
+    const normalizedUrl = new URL(window.location.href);
+    normalizedUrl.searchParams.delete("role");
+    window.history.replaceState({ portfolioRole: "unselected" }, "", normalizedUrl);
+  }
+
+  applyPortfolioRole(initialRole);
+}
+
 function updateClock() {
+  if (!clock) {
+    return;
+  }
+
   const now = new Date();
   const time = now.toLocaleTimeString(currentLanguage === "en" ? "en-GB" : "fi-FI", {
     hour: "2-digit",
@@ -340,6 +839,10 @@ function updateClock() {
 }
 
 function setVisitorCounter() {
+  if (!visitorCount) {
+    return;
+  }
+
   const start = 1984;
   const today = new Date();
   const daySeed = Math.floor(today.getTime() / 86400000);
@@ -815,7 +1318,11 @@ function getSafeButtonText(element) {
 }
 
 function getAnalyticsEventType(eventName) {
-  if (eventName === "button_click" || eventName === "visit_end") {
+  if (
+    eventName === "button_click" ||
+    eventName === "visit_end" ||
+    eventName === "portfolio_role_selected"
+  ) {
     return eventName;
   }
 
@@ -999,9 +1506,27 @@ function updateVisitorConsentBanner() {
     return;
   }
 
+  const title = banner.querySelector("[data-visitor-consent-title]");
   const text = banner.querySelector("[data-visitor-consent-text]");
   const accept = banner.querySelector("[data-visitor-consent-accept]");
+  const necessary = banner.querySelector("[data-visitor-consent-necessary]");
   const decline = banner.querySelector("[data-visitor-consent-decline]");
+  const privacy = banner.querySelector("[data-visitor-consent-privacy]");
+  const kicker = banner.querySelector("[data-visitor-consent-kicker]");
+  const status = banner.querySelector("[data-visitor-consent-status]");
+  const footnote = banner.querySelector("[data-visitor-consent-footnote]");
+
+  if (kicker) {
+    kicker.textContent = translate("visitorConsentKicker");
+  }
+
+  if (status) {
+    status.textContent = translate("visitorConsentStatus");
+  }
+
+  if (title) {
+    title.textContent = translate("visitorConsentTitle");
+  }
 
   if (text) {
     text.textContent = translate("visitorConsentText");
@@ -1011,16 +1536,96 @@ function updateVisitorConsentBanner() {
     accept.textContent = translate("visitorConsentAccept");
   }
 
+  if (necessary) {
+    necessary.textContent = translate("visitorConsentNecessary");
+  }
+
   if (decline) {
     decline.textContent = translate("visitorConsentDecline");
+  }
+
+  if (privacy) {
+    privacy.textContent = translate("visitorConsentPrivacy");
+  }
+
+  if (footnote) {
+    footnote.textContent = translate("visitorConsentFootnote");
   }
 }
 
 function removeVisitorConsentBanner() {
   const banner = document.querySelector("[data-visitor-consent]");
+  const returnFocus = visitorConsentReturnFocus;
 
   if (banner) {
     banner.remove();
+  }
+
+  document.removeEventListener("keydown", trapVisitorConsentFocus);
+  document.body.classList.remove("visitor-consent-open");
+  visitorConsentReturnFocus = null;
+
+  if (returnFocus && typeof returnFocus.focus === "function") {
+    returnFocus.focus({ preventScroll: true });
+  }
+}
+
+function isFocusableElement(element) {
+  return Boolean(
+    element &&
+      !element.disabled &&
+      element.getAttribute("aria-hidden") !== "true" &&
+      element.tabIndex >= 0 &&
+      (element.offsetParent || element.getClientRects().length)
+  );
+}
+
+function getVisitorConsentFocusableElements(banner) {
+  return Array.from(
+    banner.querySelectorAll(
+      'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+  ).filter(isFocusableElement);
+}
+
+function trapVisitorConsentFocus(event) {
+  if (event.key !== "Tab") {
+    return;
+  }
+
+  const banner = document.querySelector("[data-visitor-consent]");
+
+  if (!banner) {
+    return;
+  }
+
+  const focusableElements = getVisitorConsentFocusableElements(banner);
+
+  if (!focusableElements.length) {
+    event.preventDefault();
+    banner.focus({ preventScroll: true });
+    return;
+  }
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+  const activeElement = document.activeElement;
+
+  if (!banner.contains(activeElement) || !focusableElements.includes(activeElement)) {
+    event.preventDefault();
+    (event.shiftKey ? lastElement : firstElement).focus({ preventScroll: true });
+    return;
+  }
+
+  if (event.shiftKey && activeElement === firstElement) {
+    event.preventDefault();
+    lastElement.focus({ preventScroll: true });
+    return;
+  }
+
+  if (!event.shiftKey && activeElement === lastElement) {
+    event.preventDefault();
+    firstElement.focus({ preventScroll: true });
   }
 }
 
@@ -1031,9 +1636,35 @@ function showVisitorConsentBanner() {
   }
 
   const banner = document.createElement("section");
+  visitorConsentReturnFocus = document.activeElement;
   banner.className = "visitor-consent";
   banner.dataset.visitorConsent = "true";
-  banner.setAttribute("aria-live", "polite");
+  banner.setAttribute("role", "dialog");
+  banner.setAttribute("aria-modal", "true");
+  banner.setAttribute("aria-labelledby", "visitor-consent-title");
+  banner.setAttribute("tabindex", "-1");
+
+  const panel = document.createElement("div");
+  panel.className = "visitor-consent-panel";
+
+  const mast = document.createElement("div");
+  mast.className = "visitor-consent-mast";
+
+  const kicker = document.createElement("p");
+  kicker.className = "visitor-consent-kicker";
+  kicker.dataset.visitorConsentKicker = "true";
+
+  const status = document.createElement("p");
+  status.className = "visitor-consent-status";
+  status.dataset.visitorConsentStatus = "true";
+  mast.append(kicker, status);
+
+  const content = document.createElement("div");
+  content.className = "visitor-consent-content";
+
+  const title = document.createElement("h2");
+  title.id = "visitor-consent-title";
+  title.dataset.visitorConsentTitle = "true";
 
   const text = document.createElement("p");
   text.dataset.visitorConsentText = "true";
@@ -1043,7 +1674,7 @@ function showVisitorConsentBanner() {
 
   const accept = document.createElement("button");
   accept.type = "button";
-  accept.className = "visitor-consent-button primary";
+  accept.className = "visitor-consent-button is-accept";
   accept.dataset.visitorConsentAccept = "true";
   accept.addEventListener("click", () => {
     saveVisitorConsent("accepted");
@@ -1053,25 +1684,50 @@ function showVisitorConsentBanner() {
 
   const decline = document.createElement("button");
   decline.type = "button";
-  decline.className = "visitor-consent-button";
+  decline.className = "visitor-consent-button is-decline";
   decline.dataset.visitorConsentDecline = "true";
   decline.addEventListener("click", () => {
     saveVisitorConsent("declined");
     removeVisitorConsentBanner();
   });
 
-  actions.append(accept, decline);
-  banner.append(text, actions);
+  const necessary = document.createElement("button");
+  necessary.type = "button";
+  necessary.className = "visitor-consent-button is-necessary";
+  necessary.dataset.visitorConsentNecessary = "true";
+  necessary.addEventListener("click", () => {
+    saveVisitorConsent("necessary");
+    removeVisitorConsentBanner();
+  });
+
+  const privacy = document.createElement("a");
+  privacy.href = "privacy.html";
+  privacy.className = "visitor-consent-privacy";
+  privacy.dataset.visitorConsentPrivacy = "true";
+
+  const footnote = document.createElement("p");
+  footnote.className = "visitor-consent-footnote";
+  footnote.dataset.visitorConsentFootnote = "true";
+
+  actions.append(accept, necessary, decline);
+  content.append(title, text, privacy, actions, footnote);
+  panel.append(mast, content);
+  banner.append(panel);
   document.body.append(banner);
+  document.body.classList.add("visitor-consent-open");
+  document.addEventListener("keydown", trapVisitorConsentFocus);
   updateVisitorConsentBanner();
+  banner.focus({ preventScroll: true });
 }
 
 function initVisitorData() {
-  if (!canUseVisitorData()) {
+  const config = contentConfig.visitorData;
+
+  if (!config || config.enabled === false) {
     return;
   }
 
-  if (contentConfig.visitorData.requireConsent === false) {
+  if (config.requireConsent === false) {
     sendVisitorData();
     return;
   }
@@ -1083,7 +1739,11 @@ function initVisitorData() {
     return;
   }
 
-  if (consent === "declined") {
+  if (consent === "declined" || consent === "necessary") {
+    return;
+  }
+
+  if (document.body.classList.contains("privacy-view")) {
     return;
   }
 
@@ -1144,6 +1804,29 @@ function showVideoPlayButton(shouldShow) {
   }
 }
 
+function hasThirdPartyContentConsent() {
+  return (
+    contentConfig.visitorData.requireConsent === false || getVisitorConsent() === "accepted"
+  );
+}
+
+function showVideoConsentPlaceholder(shouldShow) {
+  if (videoConsentPlaceholder) {
+    videoConsentPlaceholder.hidden = !shouldShow;
+  }
+}
+
+function resetYoutubeFrame() {
+  if (!videoFrame) {
+    return;
+  }
+
+  videoFrame.src = "about:blank";
+  videoFrame.hidden = true;
+  videoReady = false;
+  showVideoConsentPlaceholder(true);
+}
+
 function getYoutubeEmbedUrl(autoplay = false) {
   if (!contentConfig.video.youtubeId) {
     return "";
@@ -1164,15 +1847,21 @@ function getYoutubeEmbedUrl(autoplay = false) {
     params.set("autoplay", "1");
   }
 
-  return `https://www.youtube.com/embed/${contentConfig.video.youtubeId}?${params.toString()}`;
+  return `https://www.youtube-nocookie.com/embed/${contentConfig.video.youtubeId}?${params.toString()}`;
 }
 
 function hasYoutubeVideo() {
   return Boolean(videoFrame && contentConfig.video.youtubeId);
 }
 
-function showYoutubeVideo(autoplay = false) {
+function showYoutubeVideo(autoplay = false, options = {}) {
   if (!hasYoutubeVideo()) {
+    return false;
+  }
+
+  if (!options.userInitiated && !hasThirdPartyContentConsent()) {
+    resetYoutubeFrame();
+    setVideoStatus("videoNeedsConsent");
     return false;
   }
 
@@ -1183,6 +1872,7 @@ function showYoutubeVideo(autoplay = false) {
     videoCv.hidden = true;
   }
 
+  showVideoConsentPlaceholder(false);
   videoFrame.hidden = false;
   videoFrame.src = getYoutubeEmbedUrl(autoplay);
   videoReady = true;
@@ -1196,7 +1886,7 @@ function stopYoutubeVideo() {
     return;
   }
 
-  videoFrame.src = getYoutubeEmbedUrl(false);
+  resetYoutubeFrame();
 }
 
 function markVideoReady() {
@@ -1297,14 +1987,16 @@ function tryNextVideoSource() {
 
 function prepareVideo() {
   if (hasYoutubeVideo()) {
-    showYoutubeVideo(false);
-    return;
+    resetYoutubeFrame();
+    setVideoStatus("videoNeedsConsent");
+    return false;
   }
 
   if (!videoCv || videoReady) {
-    return;
+    return false;
   }
   loadVideoSource(currentVideoSourceIndex);
+  return true;
 }
 
 async function attemptVideoPlayback() {
@@ -1333,7 +2025,7 @@ async function attemptVideoPlayback() {
 function playVideoFromButton() {
   autoplayRequested = true;
 
-  if (showYoutubeVideo(true)) {
+  if (showYoutubeVideo(true, { userInitiated: true })) {
     if (!videoPlayTracked) {
       videoPlayTracked = true;
       trackVideoEvent("play");
@@ -1357,15 +2049,12 @@ function openVideoPlayer() {
   }
 
   videoPlayer.hidden = false;
-  autoplayRequested = true;
-  setVideoStatus("videoLoading");
+  autoplayRequested = false;
+  setVideoStatus(hasYoutubeVideo() ? "videoNeedsConsent" : "videoLoading");
   showVideoPlayButton(false);
 
-  if (showYoutubeVideo(true)) {
-    if (!videoPlayTracked) {
-      videoPlayTracked = true;
-      trackVideoEvent("play");
-    }
+  if (hasYoutubeVideo()) {
+    resetYoutubeFrame();
     videoPlayer.scrollIntoView({ behavior: "smooth", block: "center" });
     return;
   }
@@ -1373,6 +2062,24 @@ function openVideoPlayer() {
   prepareVideo();
   videoPlayer.scrollIntoView({ behavior: "smooth", block: "center" });
   attemptVideoPlayback();
+}
+
+function loadVideoFromButton() {
+  if (!videoPlayer) {
+    return;
+  }
+
+  videoPlayer.hidden = false;
+  autoplayRequested = false;
+  setVideoStatus("videoLoading");
+
+  if (showYoutubeVideo(false, { userInitiated: true })) {
+    videoPlayer.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+
+  prepareVideo();
+  videoPlayer.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function closeVideoPlayer() {
@@ -1391,6 +2098,7 @@ function closeVideoPlayer() {
 }
 
 applyLanguage(getSavedLanguage());
+initPortfolioRoleView();
 applyContentConfig();
 setVisitorCounter();
 
@@ -1417,7 +2125,25 @@ if (videoCv) {
   });
 }
 
-prepareVideo();
+if (hasYoutubeVideo()) {
+  resetYoutubeFrame();
+}
+
+function openPrivacySettings() {
+  try {
+    localStorage.removeItem("futureMakerVisitorConsent");
+    localStorage.removeItem("futureMakerVisitorConsentScope");
+  } catch (error) {
+    // The dialog can still be opened when storage is unavailable.
+  }
+
+  showVisitorConsentBanner();
+}
+
+document.querySelectorAll("[data-open-privacy-settings]").forEach((button) => {
+  button.addEventListener("click", openPrivacySettings);
+});
+
 initVisitorData();
 window.setInterval(updateClock, 30000);
 
@@ -1447,8 +2173,42 @@ if (videoPlayButton) {
   videoPlayButton.addEventListener("click", playVideoFromButton);
 }
 
+if (videoLoadButton) {
+  videoLoadButton.addEventListener("click", loadVideoFromButton);
+}
+
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
     applyLanguage(button.dataset.language);
   });
+});
+
+portfolioRoleButtons.forEach((button) => {
+  const selectPortfolioRole = () => {
+    const selectedRole = button.dataset.roleButton;
+
+    if (!portfolioRoles.has(selectedRole) || selectedRole === currentPortfolioRole) {
+      return;
+    }
+
+    applyPortfolioRole(selectedRole, {
+      updateHistory: true,
+      track: true,
+      announce: true,
+    });
+  };
+
+  button.addEventListener("click", selectPortfolioRole);
+  button.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
+    event.preventDefault();
+    selectPortfolioRole();
+  });
+});
+
+window.addEventListener("popstate", () => {
+  applyPortfolioRole(getPortfolioRoleFromLocation(), { announce: true });
 });
