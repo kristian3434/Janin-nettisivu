@@ -20,7 +20,6 @@ const posterElements = document.querySelectorAll("[data-content-poster]");
 const portfolioRoleButtons = document.querySelectorAll("[data-role-button]");
 const portfolioRolePanels = document.querySelectorAll("[data-role-panel]");
 const portfolioRoleAnnouncer = document.querySelector("[data-role-announcer]");
-const recruiterEdition = document.querySelector("#role-view");
 
 const defaultContent = {
   documents: {
@@ -79,7 +78,6 @@ let videoPlayTracked = false;
 let clickCount = 0;
 let visitorConsentReturnFocus = null;
 let currentPortfolioRole = "unselected";
-let recruiterEditionViewSent = false;
 const videoProgressMarks = new Set();
 const portfolioRoles = new Set([
   "creative-design",
@@ -751,80 +749,13 @@ function trackPortfolioRoleSelection(role) {
 
   sendVisitorData(
     {
-      eventName: "portfolio_role_selected",
+      eventName: "button_click",
       eventCategory: "portfolio_role",
       buttonName: portfolioRoleAnalyticsNames[role],
       buttonTarget: `?role=${role}`,
     },
     { beacon: true }
   );
-}
-
-function isRecruiterEditionVisible() {
-  if (!recruiterEdition) {
-    return false;
-  }
-
-  const rect = recruiterEdition.getBoundingClientRect();
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
-  const visibleHeight = Math.max(
-    0,
-    Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)
-  );
-  const comparisonHeight = Math.max(1, Math.min(rect.height, viewportHeight));
-
-  return visibleHeight / comparisonHeight >= 0.35;
-}
-
-function trackRecruiterEditionView() {
-  if (
-    recruiterEditionViewSent ||
-    !recruiterEdition ||
-    !isRecruiterEditionVisible() ||
-    !canUseVisitorData() ||
-    (contentConfig.visitorData.requireConsent !== false &&
-      getVisitorConsent() !== "accepted")
-  ) {
-    return false;
-  }
-
-  recruiterEditionViewSent = true;
-  sendVisitorData(
-    {
-      eventName: "recruiter_special_view",
-      eventCategory: "portfolio_role",
-      buttonName: "recruiter_special_issue",
-      buttonTarget: "#role-view",
-      buttonHref: "#role-view",
-    },
-    { beacon: true }
-  );
-  return true;
-}
-
-function initRecruiterEditionAnalytics() {
-  if (!recruiterEdition) {
-    return;
-  }
-
-  if (!("IntersectionObserver" in window)) {
-    trackRecruiterEditionView();
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (
-        entries.some((entry) => entry.isIntersecting) &&
-        trackRecruiterEditionView()
-      ) {
-        observer.disconnect();
-      }
-    },
-    { threshold: [0, 0.05, 0.1, 0.2, 0.35] }
-  );
-
-  observer.observe(recruiterEdition);
 }
 
 function updatePortfolioRoleUrl(role) {
@@ -1389,9 +1320,7 @@ function getSafeButtonText(element) {
 function getAnalyticsEventType(eventName) {
   if (
     eventName === "button_click" ||
-    eventName === "visit_end" ||
-    eventName === "portfolio_role_selected" ||
-    eventName === "recruiter_special_view"
+    eventName === "visit_end"
   ) {
     return eventName;
   }
@@ -1750,7 +1679,6 @@ function showVisitorConsentBanner() {
     saveVisitorConsent("accepted");
     removeVisitorConsentBanner();
     sendVisitorData();
-    trackRecruiterEditionView();
   });
 
   const decline = document.createElement("button");
@@ -2216,7 +2144,6 @@ document.querySelectorAll("[data-open-privacy-settings]").forEach((button) => {
 });
 
 initVisitorData();
-initRecruiterEditionAnalytics();
 window.setInterval(updateClock, 30000);
 
 document.addEventListener("pointerdown", handleRetroClickPointer, { passive: true });
