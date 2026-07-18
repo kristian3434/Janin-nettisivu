@@ -293,6 +293,7 @@ async function discoverStaticButtons(page) {
       dataButtonName: element.dataset.buttonName || "",
       dataLanguage: element.dataset.language || "",
       dataRoleButton: element.dataset.roleButton || "",
+      dataRolePanel: element.closest("[data-role-panel]")?.dataset.rolePanel || "",
       isPrivacySettings: element.hasAttribute("data-open-privacy-settings"),
       isVideoTrigger: element.hasAttribute("data-video-trigger"),
       isVideoLoad: element.hasAttribute("data-video-load"),
@@ -307,12 +308,18 @@ async function discoverStaticButtons(page) {
 }
 
 async function prepareHiddenRoleLink(page, target) {
-  if (target.dataButtonName !== "portfolio_role_continue_full") {
+  const role = target.dataRolePanel;
+
+  if (!role || role === "unselected") {
     return;
   }
 
-  await page.locator('[data-role-button="all"]').click({ timeout: settings.timeoutMs });
-  await page.locator('[data-role-panel="all"]').waitFor({ state: "visible" });
+  await page
+    .locator(`[data-role-button="${role}"]`)
+    .click({ timeout: settings.timeoutMs });
+  await page
+    .locator(`[data-role-panel="${role}"]`)
+    .waitFor({ state: "visible", timeout: settings.timeoutMs });
 }
 
 async function exerciseButton(page, locator, target) {
