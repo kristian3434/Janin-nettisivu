@@ -37,6 +37,10 @@ JavaScript vaihtaa vain aktiivisen esittelyn, kolme suositusta, kuusi taitoa ja 
 
 Roolivalinnan analytiikkatapahtuma on `portfolio_role_selected`. `button_label`-kentässä käytetään arvoja `portfolio_role_creative_design`, `portfolio_role_digital_marketing`, `portfolio_role_ai_solutions` ja `portfolio_role_all`. Koko portfolioon jatkava linkki käyttää nykyistä `button_click`-tapahtumaa ja tunnistetta `portfolio_role_continue_full`. Neutraali aloitustila ei lähetä tapahtumaa. Uusia tunnisteita, evästeitä tai henkilötietokenttiä ei lisätä, ja tapahtumat lähetetään vain, jos analytiikkasuostumus on hyväksytty.
 
+Kun vähintään 35 prosenttia Rekrytoijan erikoisnumero -osiosta on näkyvissä, Google Sheets -analytiikkaan lähetetään kerran sivulatausta kohden tapahtuma `recruiter_special_view`. Sen `button_label` on `recruiter_special_issue` ja `button_href` on `#role-view`. Tapahtuma käyttää nykyisiä analytiikkakenttiä eikä lisää uusia henkilötieto-, eväste- tai taulukkosarakkeita. Jos analytiikkasuostumusta ei ole hyväksytty, tapahtumaa ei lähetetä.
+
+Erikoisnumeron yhdeksän suositeltua työnäytelinkkiä käyttävät tavallista `button_click`-tapahtumaa ja yksilöllisiä `recruiter_*`-tunnisteita. Näin yksityisestä Google Sheets -taulukosta näkee, minkä näkökulman kävijä valitsi ja mitä sen jälkeen esiteltyä työnäytettä hän avasi. Myös nämä tapahtumat lähetetään vain hyväksytyllä analytiikkasuostumuksella.
+
 ## 1. Miten automaatio toimii
 
 Tarkistin lukee sivuston staattiset tiedostot ja asetukset:
