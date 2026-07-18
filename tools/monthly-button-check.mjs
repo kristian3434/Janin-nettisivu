@@ -466,12 +466,22 @@ async function exerciseLink(page, context, locator, target) {
     return `Klikkaus käynnisti navigoinnin osoitteeseen ${destination.hostname}.`;
   }
 
-  const urlWait = page.waitForURL(
-    (url) => sameDestination(url.toString(), destination.toString()),
-    { timeout: settings.timeoutMs, waitUntil: "domcontentloaded" }
-  );
-  await locator.click({ timeout: settings.timeoutMs });
-  await urlWait;
+  try {
+    await Promise.all([
+      page.waitForURL(
+        (url) => sameDestination(url.toString(), destination.toString()),
+        { timeout: settings.timeoutMs, waitUntil: "domcontentloaded" }
+      ),
+      locator.click({ timeout: settings.timeoutMs }),
+    ]);
+  } catch (error) {
+    // Chromium can report ERR_ABORTED after an otherwise successful same-origin
+    // navigation. Accept the click only when the browser is already at the exact
+    // expected destination; otherwise preserve the original failure.
+    if (!sameDestination(page.url(), destination.toString())) {
+      throw error;
+    }
+  }
 
   if (destination.hash) {
     const targetExists = await page.locator(destination.hash).count();
