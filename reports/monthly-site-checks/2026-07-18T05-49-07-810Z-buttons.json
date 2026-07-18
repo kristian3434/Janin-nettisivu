@@ -1,0 +1,426 @@
+{
+  "startedAt": "2026-07-18T05:49:07.810Z",
+  "targetUrl": "https://tulevaisuudentekija.janmyllymaki.workers.dev",
+  "testedPages": 4,
+  "totals": {
+    "buttons": 46,
+    "passed": 46,
+    "failed": 0
+  },
+  "results": [
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "language_fi",
+      "target": "fi",
+      "detail": "Kieli vaihtui arvoon fi ja nappi aktivoitui.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "language_en",
+      "target": "en",
+      "detail": "Kieli vaihtui arvoon en ja nappi aktivoitui.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "nav_news",
+      "target": "#news",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #news.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "nav_campaign",
+      "target": "#campaign",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #campaign.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "nav_archive",
+      "target": "#archive",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #archive.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "nav_media",
+      "target": "#media",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #media.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "nav_contact",
+      "target": "#contact",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #contact.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "nav_extra",
+      "target": "extra.html",
+      "detail": "Klikkaus avasi oikean sisäisen kohteen /extra.html.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "portfolio_role_creative_design",
+      "target": "creative-design",
+      "detail": "Roolinäkymä creative-design aktivoitui ja URL päivittyi.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "portfolio_role_digital_marketing",
+      "target": "digital-marketing",
+      "detail": "Roolinäkymä digital-marketing aktivoitui ja URL päivittyi.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "portfolio_role_ai_solutions",
+      "target": "ai-solutions",
+      "detail": "Roolinäkymä ai-solutions aktivoitui ja URL päivittyi.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "portfolio_role_all",
+      "target": "all",
+      "detail": "Roolinäkymä all aktivoitui ja URL päivittyi.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "portfolio_role_continue_full",
+      "target": "#news",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #news.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "email_hero",
+      "target": "mailto:janmyllymaki@gmail.com",
+      "detail": "Sähköpostinappi reagoi klikkaukseen ja mailto-osoite on kelvollinen.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "archive_button",
+      "target": "#archive",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #archive.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "cv_button",
+      "target": "/files/cv.pdf",
+      "detail": "Klikkaus käynnisti PDF-latauksen cv.pdf.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "cover_letter_button",
+      "target": "/files/saatekirje.pdf",
+      "detail": "Klikkaus käynnisti PDF-latauksen saatekirje.pdf.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "manuscript_button",
+      "target": "/files/kasikirjoitus.pdf",
+      "detail": "Klikkaus käynnisti PDF-latauksen kasikirjoitus.pdf.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "business_card_button",
+      "target": "/files/kayntikortti.pdf",
+      "detail": "Klikkaus käynnisti PDF-latauksen kayntikortti.pdf.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "Sulje videosoitin",
+      "target": "",
+      "detail": "Sulkunappi sulki videosoittimen.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "video_cv_load_button",
+      "target": "",
+      "detail": "Videon latausnappi toi yksityisyysparannetun YouTube-upotuksen näkyviin.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "video_cv_play_button",
+      "target": "",
+      "detail": "Videon varatoistonappi käynnisti YouTube-upotuksen ohjelmallisesti.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "video_cv_poster",
+      "target": "",
+      "detail": "Videonappi avasi sivun oman videosoittimen.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "video_cv_button",
+      "target": "",
+      "detail": "Videonappi avasi sivun oman videosoittimen.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "youtube_creative_career",
+      "target": "https://www.youtube.com/watch?v=SQt0zvktlkw",
+      "detail": "Klikkaus käynnisti navigoinnin osoitteeseen www.youtube.com.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "youtube_ship_of_ideas",
+      "target": "https://www.youtube.com/watch?v=yUSa00QPDRw",
+      "detail": "Klikkaus käynnisti navigoinnin osoitteeseen www.youtube.com.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "instagram_button",
+      "target": "https://www.instagram.com/taidetta_taidetta/",
+      "detail": "Klikkaus käynnisti navigoinnin osoitteeseen www.instagram.com.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "linkedin_button",
+      "target": "https://www.linkedin.com/in/jani-myllymaki/",
+      "detail": "Klikkaus käynnisti navigoinnin osoitteeseen www.linkedin.com.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "email_contact",
+      "target": "mailto:janmyllymaki@gmail.com",
+      "detail": "Sähköpostinappi reagoi klikkaukseen ja mailto-osoite on kelvollinen.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button-link",
+      "label": "privacy_notice_button",
+      "target": "privacy.html",
+      "detail": "Klikkaus avasi oikean sisäisen kohteen /privacy.html.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "button",
+      "label": "Asetukset",
+      "target": "",
+      "detail": "Tietosuoja-asetukset avasivat ikkunan, jossa on kolme valintaa ja tietosuojalinkki.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button",
+      "label": "language_fi",
+      "target": "fi",
+      "detail": "Kieli vaihtui arvoon fi ja nappi aktivoitui.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button",
+      "label": "language_en",
+      "target": "en",
+      "detail": "Kieli vaihtui arvoon en ja nappi aktivoitui.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button-link",
+      "label": "extra_nav_news",
+      "target": "index.html#news",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #news.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button-link",
+      "label": "extra_nav_archive",
+      "target": "index.html#archive",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #archive.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button-link",
+      "label": "extra_nav_media",
+      "target": "index.html#media",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #media.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button-link",
+      "label": "extra_nav_contact",
+      "target": "index.html#contact",
+      "detail": "Klikkaus siirtyi oikeaan ankkurikohteeseen #contact.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button-link",
+      "label": "extra_nav_current",
+      "target": "extra.html",
+      "detail": "Klikkaus avasi oikean sisäisen kohteen /extra.html.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button-link",
+      "label": "extra_back_top",
+      "target": "index.html",
+      "detail": "Klikkaus avasi oikean sisäisen kohteen /index.html.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "extra.html",
+      "type": "button-link",
+      "label": "extra_back_bottom",
+      "target": "index.html",
+      "detail": "Klikkaus avasi oikean sisäisen kohteen /index.html.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "privacy.html",
+      "type": "button",
+      "label": "Muuta tietosuoja-asetuksia",
+      "target": "",
+      "detail": "Tietosuoja-asetukset avasivat ikkunan, jossa on kolme valintaa ja tietosuojalinkki.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "privacy.html",
+      "type": "button-link",
+      "label": "Takaisin etusivulle",
+      "target": "index.html",
+      "detail": "Klikkaus avasi oikean sisäisen kohteen /index.html.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "cookie-consent-button",
+      "label": "Evästeet: hyväksy analytiikka",
+      "target": "accepted",
+      "detail": "Nappi sulki ikkunan ja tallensi valinnan accepted.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "cookie-consent-button",
+      "label": "Evästeet: vain välttämättömät",
+      "target": "necessary",
+      "detail": "Nappi sulki ikkunan ja tallensi valinnan necessary.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "cookie-consent-button",
+      "label": "Evästeet: hylkää valinnaiset",
+      "target": "declined",
+      "detail": "Nappi sulki ikkunan ja tallensi valinnan declined.",
+      "recommendation": ""
+    },
+    {
+      "status": "pass",
+      "page": "index.html",
+      "type": "cookie-consent-link",
+      "label": "Evästeet: tietosuojaseloste",
+      "target": "/privacy.html",
+      "detail": "Evästeikkunan tietosuojalinkki avasi tietosuojasivun.",
+      "recommendation": ""
+    }
+  ]
+}
