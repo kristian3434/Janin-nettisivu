@@ -294,6 +294,10 @@ async function discoverStaticButtons(page) {
       dataLanguage: element.dataset.language || "",
       dataRoleButton: element.dataset.roleButton || "",
       dataRolePanel: element.closest("[data-role-panel]")?.dataset.rolePanel || "",
+      isSkipLink: element.classList.contains("skip-link"),
+      isUllaTrigger: element.hasAttribute("data-ulla-trigger"),
+      isUllaZoom: element.hasAttribute("data-ulla-zoom"),
+      isUllaClose: element.hasAttribute("data-ulla-close"),
       isPrivacySettings: element.hasAttribute("data-open-privacy-settings"),
       isVideoTrigger: element.hasAttribute("data-video-trigger"),
       isVideoLoad: element.hasAttribute("data-video-load"),
@@ -320,6 +324,29 @@ async function prepareHiddenRoleLink(page, target) {
   await page
     .locator(`[data-role-panel="${role}"]`)
     .waitFor({ state: "visible", timeout: settings.timeoutMs });
+}
+
+async function openUllaDialog(page) {
+  const trigger = page.locator("[data-ulla-trigger]").first();
+  ensure((await trigger.count()) === 1, "Ulla-työnäytteen avauslinkkiä ei löytynyt.");
+
+  const role = await trigger.evaluate(
+    (element) => element.closest("[data-role-panel]")?.dataset.rolePanel || ""
+  );
+
+  if (role && role !== "unselected") {
+    await page
+      .locator(`[data-role-button="${role}"]`)
+      .click({ timeout: settings.timeoutMs });
+    await page
+      .locator(`[data-role-panel="${role}"]`)
+      .waitFor({ state: "visible", timeout: settings.timeoutMs });
+  }
+
+  await trigger.click({ timeout: settings.timeoutMs });
+  const dialog = page.locator("#ulla-work-sample-dialog");
+  await dialog.waitFor({ state: "visible", timeout: settings.timeoutMs });
+  return { dialog, trigger };
 }
 
 async function exerciseButton(page, locator, target) {
@@ -361,6 +388,28 @@ async function exerciseButton(page, locator, target) {
       "Evästeikkunan tietosuojalinkki puuttuu."
     );
     return "Tietosuoja-asetukset avasivat ikkunan, jossa on kolme valintaa ja tietosuojalinkki.";
+  }
+
+  if (target.isUllaZoom) {
+    const { dialog } = await openUllaDialog(page);
+    await locator.click({ timeout: settings.timeoutMs });
+    ensure(
+      (await locator.getAttribute("aria-pressed")) === "true",
+      "Ulla-työnäytteen suurennus ei aktivoitunut."
+    );
+    await dialog.waitFor({ state: "visible", timeout: settings.timeoutMs });
+    return "Ulla-työnäytteen suurennus aktivoitui.";
+  }
+
+  if (target.isUllaClose) {
+    const { dialog, trigger } = await openUllaDialog(page);
+    await locator.click({ timeout: settings.timeoutMs });
+    await dialog.waitFor({ state: "hidden", timeout: settings.timeoutMs });
+    ensure(
+      await trigger.evaluate((element) => element === document.activeElement),
+      "Fokus ei palannut Ulla-työnäytteen avauslinkkiin."
+    );
+    return "Ulla-työnäyte sulkeutui ja fokus palasi avauslinkkiin.";
   }
 
   if (target.isVideoTrigger) {
@@ -456,6 +505,27 @@ async function exerciseLink(page, context, locator, target) {
 
   const destination = new URL(href, page.url());
   const currentOrigin = new URL(testBaseUrl).origin;
+
+  if (target.isSkipLink) {
+    await locator.press("Enter", { timeout: settings.timeoutMs });
+    await page.waitForTimeout(100);
+    ensure(
+      sameDestination(page.url(), destination.toString()),
+      `Ohituslinkki ei siirtynyt kohteeseen ${destination.hash}.`
+    );
+    ensure(
+      destination.hash && (await page.locator(destination.hash).count()) === 1,
+      `Ohituslinkin kohdetta ${destination.hash} ei löytynyt.`
+    );
+    return `Ohituslinkki siirtyi näppäimistöllä kohteeseen ${destination.hash}.`;
+  }
+
+  if (target.isUllaTrigger) {
+    await locator.click({ timeout: settings.timeoutMs });
+    const dialog = page.locator("#ulla-work-sample-dialog");
+    await dialog.waitFor({ state: "visible", timeout: settings.timeoutMs });
+    return "Ulla-työnäytteen linkki avasi työnäyteikkunan.";
+  }
 
   if (destination.origin !== currentOrigin) {
     let navigationUrl = "";
@@ -867,3 +937,4 @@ main().catch(async (error) => {
   }
   process.exitCode = 1;
 });
+
