@@ -76,7 +76,22 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports/monthly-site-checks
           git commit -m "Add monthly site check report"
-          git push
+
+          # Rebase the report commit onto the latest main before pushing. Retry
+          # in case main advances again between the pull and the push.
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              echo "Could not push the report after $attempt attempts."
+              exit 1
+            fi
+
+            echo "Push was rejected; updating main and retrying."
+          done
 
       - name: Fail if site check failed
         if: steps.site_check.outputs.status != '0'
